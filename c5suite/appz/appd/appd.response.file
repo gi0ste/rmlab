@@ -1,0 +1,12 @@
+serverHostName=HOSTPLACEHOLDER
+sys.languageId=en
+disableEULA=true
+
+platformAdmin.port=theAdminPort
+platformAdmin.databasePort=theDatabasePort
+platformAdmin.dataDir=/opt/appdynamics/platform/mysql/data
+platformAdmin.databasePassword=theDatabasePassword
+platformAdmin.databaseRootPassword=theDatabaseRootPassword
+platformAdmin.adminPassword=theAdminPassword
+platformAdmin.useHttps$Boolean=false
+sys.installationDir=/opt/appdynamics/platform
