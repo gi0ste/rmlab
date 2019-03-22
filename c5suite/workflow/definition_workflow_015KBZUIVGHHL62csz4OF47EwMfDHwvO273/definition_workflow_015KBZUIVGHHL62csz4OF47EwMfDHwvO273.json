@@ -7,14 +7,36 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.boolean",
+        "schema_id": "datatype.integer",
         "properties": {
-          "value": false,
           "scope": "input",
-          "name": "DeleteTenant",
-          "type": "datatype.boolean"
+          "name": "Tenant End Number",
+          "type": "datatype.integer"
         },
-        "unique_name": "variable_workflow_015KBZV0CP9SQ0ioXdbhcvorJyLw9MrAdQs",
+        "unique_name": "variable_workflow_015KBZV0CPF8K53wWFQC0Ejvi2oc4MyjvzT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "action-orchestrator",
+          "scope": "static",
+          "name": "Action Orchestrator",
+          "type": "datatype.string",
+          "description": "Action Orchestrator module"
+        },
+        "unique_name": "variable_workflow_015KBZV0CPGX54DOtB0gOKHdSs3NfkM6EVw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Partner",
+          "scope": "input",
+          "name": "Tenant Prefix",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_015KBZV0CP6CS7WD4bJKksDwGg7lm11832B",
         "object_type": "variable_workflow"
       },
       {
@@ -31,17 +53,6 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "Partner",
-          "scope": "input",
-          "name": "TenantPrefix",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_015KBZV0CP6CS7WD4bJKksDwGg7lm11832B",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
           "value": "",
           "scope": "local",
           "name": "cloudregions",
@@ -51,13 +62,25 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "datatype.secure_string",
+        "schema_id": "datatype.integer",
         "properties": {
+          "value": 1,
           "scope": "input",
-          "name": "TenantPasswords",
-          "type": "datatype.secure_string"
+          "name": "Tenant Start Num",
+          "type": "datatype.integer"
         },
-        "unique_name": "variable_workflow_015KBZV0CP2LP6hvtg7xjggLww29GFoYDq8",
+        "unique_name": "variable_workflow_015KBZV0CPBNU4hZ8jXBtrA851Fh2uqTC6o",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "input",
+          "name": "DeleteTenant",
+          "type": "datatype.boolean"
+        },
+        "unique_name": "variable_workflow_015KBZV0CP9SQ0ioXdbhcvorJyLw9MrAdQs",
         "object_type": "variable_workflow"
       },
       {
@@ -85,36 +108,13 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "datatype.integer",
-        "properties": {
-          "value": 1,
-          "scope": "input",
-          "name": "TenantStartNum",
-          "type": "datatype.integer"
-        },
-        "unique_name": "variable_workflow_015KBZV0CPBNU4hZ8jXBtrA851Fh2uqTC6o",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.integer",
+        "schema_id": "datatype.secure_string",
         "properties": {
           "scope": "input",
-          "name": "TenantEndNum",
-          "type": "datatype.integer"
+          "name": "Tenant Passwords",
+          "type": "datatype.secure_string"
         },
-        "unique_name": "variable_workflow_015KBZV0CPF8K53wWFQC0Ejvi2oc4MyjvzT",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "action-orchestrator",
-          "scope": "static",
-          "name": "Action Orchestrator",
-          "type": "datatype.string",
-          "description": "Action Orchestrator module"
-        },
-        "unique_name": "variable_workflow_015KBZV0CPGX54DOtB0gOKHdSs3NfkM6EVw",
+        "unique_name": "variable_workflow_015KBZV0CP2LP6hvtg7xjggLww29GFoYDq8",
         "object_type": "variable_workflow"
       }
     ],
@@ -222,13 +222,12 @@
                 "base_type": "activity",
                 "properties": {
                   "action_timeout": 180,
-                  "api_body": "{\n  \"password\": \"welcome2CLIQR!\"\n}",
+                  "api_body": "{\n  \"password\": \"Pvt2019!!\"\n}",
                   "api_call_method": "POST",
                   "continue_on_failure": false,
                   "display_name": "Set Tenant User Password",
                   "relative_url": "/suite-password/api/v1/users/$activity.definition_activity_015KBZVDUFPYT5FOHH4gwwQ2HzTNp4qjwuX.output.jsonpath_queries.tenant_owner_id$/password",
                   "runtime_user": {
-                    "override_target_runtime_user": false,
                     "target_default": true
                   },
                   "target": {
