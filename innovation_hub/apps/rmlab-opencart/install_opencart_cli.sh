@@ -225,7 +225,7 @@ iPause=3
 echo -n "Configuring Opencart ... "
 while [ $iRetries -ge 0 ]; do  
 
-  php cli_install.php install --db_driver mysqli --db_hostname $CliqrTier_Database_IP --db_username opencart --db_password opencart --db_name opencart --username admin --password admin --email youremail@example.com --agree_tnc yes --http_server http://$Apache_IP/
+  php cli_install.php install --db_driver mysqli --db_hostname $CliqrTier_Database_IP --db_user opencart --db_password opencart --db_name opencart --username admin --password admin --email youremail@example.com --agree_tnc yes --http_server http://$Apache_IP/
 
   er=$?
   if [ $er -eq 0 ]; then
