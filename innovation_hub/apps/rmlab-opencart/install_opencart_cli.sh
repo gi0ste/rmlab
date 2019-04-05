@@ -7,7 +7,7 @@ if [ -f /usr/local/osmosix/etc/userenv ]; then source /usr/local/osmosix/etc/use
 
 
 
-if [ "$Cloud_Setting_CloudFamily" != "Vmware" ]; then
+if [ "$Cloud_Setting_CloudFamily" = "AzureRM" ]; then
 
 OSMOSIX_BASE_DIR=/usr/local/osmosix
 OPENCART_INSTALLED_FILE=$OSMOSIX_BASE_DIR/etc/.OPENCART_INSTALLED
