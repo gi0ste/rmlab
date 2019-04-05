@@ -14,6 +14,8 @@ fi
 
 if [ -f /usr/local/osmosix/etc/userenv ]; then source /usr/local/osmosix/etc/userenv; fi
 
+
+
 # rtortori
 if [ -z $CliqrTier_Apache_PUBLIC_IP ]; then
   # Added for vmware deployments (no public IP)
@@ -32,6 +34,43 @@ Apache_IP=$CliqrTier_Apache_PUBLIC_IP
 Database_IP=$CliqrTier_Database_IP
 
 #
+
+
+
+#Apache_IP=$CliqrTier_Apache_PUBLIC_IP
+#[ -z $Apache_IP ] && Apache_IP=$CliqrTier_Apache_IP
+
+declare -a IP_VARs=()
+
+IP_VARs+=$(set | egrep -v "PUBLIC" | egrep -i "CliqrTier_haproxy_.*IP" | cut -d'=' -f1 )
+IP_VARs+=$(set | egrep -v "PUBLIC" | egrep -i "CliqrTier_nginx_.*IP" | cut -d'=' -f1 )
+IP_VARs+=("cliqrNodePrivateIp")
+
+unset Apache_IP
+for iv in ${IP_VARs[@]}; do
+  if [ ! -z ${!iv} ]; then
+    Apache_IP=${!iv}
+    break
+  fi
+done
+
+unset IP_VARs
+
+Database_IP=$CliqrTier_Database_IP
+
+if [ -z $Apache_IP ]; then
+  echo Could not determine Web Server IP Address
+  exit 4
+elif [ -z $Database_IP ]; then
+  echo Could not determine Database Server IP Address
+  exit 5
+fi
+
+echo DB: $Database_IP, Web:$Apache_IP
+sleep 1
+
+WEBROOT=/var/www/html
+
 
 if [ "$Cloud_Setting_CloudFamily" != "Vmware" ]; then
 
@@ -70,18 +109,14 @@ fi
 
 
 
-if [ -z $Apache_IP ]; then
-  echo Could not determine Web Server IP Address
-  exit 4
-elif [ -z $Database_IP ]; then
-  echo Could not determine Database Server IP Address
-  exit 5
-fi
 
-echo DB: $Database_IP, Web:$Apache_IP
-sleep 1
 
-WEBROOT=/var/www/html
+
+
+
+
+
+
 
 
 if [ -f /var/www/index.php ]; then
@@ -168,7 +203,7 @@ CON_ID=$(docker ps 2> /dev/null | grep apache2 | head -n 1 | awk '{print $1}')
 
 if [ ! -z $CON_ID ]; then
   echo Apache Docker Container detected. Relaunching initialisation script from from within container.
-  docker exec $CON_ID /bin/bash -c "( export CliqrTier_Apache_IP=$Apache_IP; export CliqrTier_Database_IP=$Database_IP; $WEBROOT/$SCRIPTNAME )"
+  docker exec $CON_ID /bin/bash -c "( export cliqrNodePrivateIp=$Apache_IP; export CliqrTier_Database_IP=$Database_IP; $WEBROOT/$SCRIPTNAME )"
   exit $?
 fi
 
