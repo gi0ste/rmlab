@@ -11,7 +11,7 @@ SET GLOBAL general_log = 'ON';
 
 CREATE DATABASE opencart;
 
-GRANT ALL PRIVILEGES ON opencart.* TO "root"@"%" IDENTIFIED BY "opencart";
+GRANT ALL PRIVILEGES ON opencart.* TO "opencart"@"%" IDENTIFIED BY "opencart";
 FLUSH PRIVILEGES;
 USE opencart;
 SET sql_mode = '';
