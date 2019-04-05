@@ -1,5 +1,74 @@
 #!/bin/bash
+
 exec > >(tee -a /var/tmp/config-opencart-init_$$.log) 2>&1
+if [ -f /usr/local/osmosix/etc/userenv ]; then source /usr/local/osmosix/etc/userenv; fi
+
+
+
+
+
+if [ "$Cloud_Setting_CloudFamily" != "Vmware" ]; then
+
+OSMOSIX_BASE_DIR=/usr/local/osmosix
+OPENCART_INSTALLED_FILE=$OSMOSIX_BASE_DIR/etc/.OPENCART_INSTALLED
+
+[[ -f $OPENCART_INSTALLED_FILE ]] && { echo "OpenCart already installed"; exit; }
+
+# ensure running as root
+if [ "$(id -u)" != "0" ]; then
+  exec sudo "$0" "$@"
+fi
+
+source /usr/local/osmosix/etc/userenv
+
+if [ -z $CliqrTier_Apache_PUBLIC_IP ]; then
+  # Added for vmware deployments (no public IP)
+  CliqrTier_Apache_PUBLIC_IP=$CliqrTier_Apache_IP
+elif [ -z $CliqrTier_Database_IP ]; then
+  exit 5
+fi
+
+# Added for hybrid deployments
+if [ ! -z $CliqrTier_Database_PUBLIC_IP ]; then
+  CliqrTier_Database_IP=$CliqrTier_Database_PUBLIC_IP
+fi
+
+#####added by vinod#######
+IFS=","
+hostname=$cliqrNodeHostname
+INDEX=0
+IPINDEX=0
+
+for i in $CliqrTier_Apache_HOSTNAME ;
+  do
+    position=${INDEX}
+    if [ $i = $hostname ];
+        then
+          node_position=$position
+    fi
+    let INDEX=${INDEX}+1
+  done
+for j in $CliqrTier_Apache_PUBLIC_IP ;
+  do
+    ipposition=${IPINDEX}
+    let IPINDEX=${IPINDEX}+1
+    if [ $ipposition = $node_position ];
+       then
+         HTTP_SERVER=$j;
+#         echo $HTTP_SERVER;
+    fi
+  done
+
+#####added by vinod#######
+
+cd /var/www/install
+php cli_install.php install --db_driver mysqli --db_host $CliqrTier_Database_PUBLIC_IP --db_user root --db_password opencart --db_name opencart --username admin --password admin --email ratmistr@cisco.com --agree_tnc yes --http_server http://$HTTP_SERVER/
+touch $OPENCART_INSTALLED_FILE
+
+exit 0
+fi
+
+# For vmware deployments
 
 OSMOSIX_BASE_DIR=/usr/local/osmosix
 OPENCART_INSTALLED_FILE=$OSMOSIX_BASE_DIR/etc/.OPENCART_INSTALLED
@@ -13,29 +82,6 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 if [ -f /usr/local/osmosix/etc/userenv ]; then source /usr/local/osmosix/etc/userenv; fi
-
-
-
-# rtortori
-if [ -z $CliqrTier_Apache_PUBLIC_IP ]; then
-  # Added for vmware deployments (no public IP)
-  CliqrTier_Apache_PUBLIC_IP=$CliqrTier_Apache_IP
-elif [ -z $CliqrTier_Database_IP ]; then
-  exit 5
-fi
-
-# Added for hybrid deployments
-if [ ! -z $CliqrTier_Database_PUBLIC_IP ]; then
-  CliqrTier_Database_IP=$CliqrTier_Database_PUBLIC_IP
-fi
-
-Apache_IP=$CliqrTier_Apache_PUBLIC_IP
-[ -z $Apache_IP ] && Apache_IP=$CliqrTier_Apache_IP
-Database_IP=$CliqrTier_Database_IP
-
-#
-
-
 
 #Apache_IP=$CliqrTier_Apache_PUBLIC_IP
 #[ -z $Apache_IP ] && Apache_IP=$CliqrTier_Apache_IP
@@ -70,53 +116,6 @@ echo DB: $Database_IP, Web:$Apache_IP
 sleep 1
 
 WEBROOT=/var/www/html
-
-
-if [ "$Cloud_Setting_CloudFamily" != "Vmware" ]; then
-
-  IFS=","
-  hostname=$cliqrNodeHostname
-  INDEX=0
-  IPINDEX=0
-
-  for i in $CliqrTier_Apache_HOSTNAME ;
-    do
-      position=${INDEX}
-      if [ $i = $hostname ];
-          then
-            node_position=$position
-      fi
-      let INDEX=${INDEX}+1
-    done
-  for j in $CliqrTier_Apache_PUBLIC_IP ;
-    do
-      ipposition=${IPINDEX}
-      let IPINDEX=${IPINDEX}+1
-      if [ $ipposition = $node_position ];
-         then
-           HTTP_SERVER=$j;
-  #         echo $HTTP_SERVER;
-      fi
-    done
-
-  cd /var/www/install
-  php cli_install.php install --db_driver mysqli --db_host $CliqrTier_Database_PUBLIC_IP --db_user root --db_password opencart --db_name opencart --username admin --password admin --email ratmistr@cisco.com --agree_tnc yes --http_server http://$HTTP_SERVER/
-  touch $OPENCART_INSTALLED_FILE
-
-exit 0
-fi
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if [ -f /var/www/index.php ]; then
