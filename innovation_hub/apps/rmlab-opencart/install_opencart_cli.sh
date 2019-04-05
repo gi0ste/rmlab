@@ -20,7 +20,7 @@ elif [ -z $CliqrTier_Database_IP ]; then
 fi
 
 # Added for hybrid deployments
-if [ ! -z $CliqrTier_Database_PUBLIC_IP]; then
+if [ ! -z $CliqrTier_Database_PUBLIC_IP ]; then
   CliqrTier_Database_IP=$CliqrTier_Database_PUBLIC_IP
 fi
 
