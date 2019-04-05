@@ -14,14 +14,14 @@ source /usr/local/osmosix/etc/userenv
 
 if [ -z $CliqrTier_Apache_PUBLIC_IP ]; then
   # Added for vmware deployments (no public IP)
-  CliqrTier_Apache_PUBLIC_IP = $CliqrTier_Apache_IP
+  CliqrTier_Apache_PUBLIC_IP=$CliqrTier_Apache_IP
 elif [ -z $CliqrTier_Database_IP ]; then
   exit 5
 fi
 
 # Added for hybrid deployments
 if [ ! -z $CliqrTier_Database_PUBLIC_IP]; then
-  CliqrTier_Database_IP = $CliqrTier_Database_PUBLIC_IP
+  CliqrTier_Database_IP=$CliqrTier_Database_PUBLIC_IP
 fi
 
 #####added by vinod#######
