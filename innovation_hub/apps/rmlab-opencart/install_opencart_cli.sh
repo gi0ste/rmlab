@@ -62,7 +62,7 @@ for j in $CliqrTier_Apache_PUBLIC_IP ;
 #####added by vinod#######
 
 cd /var/www/install
-php cli_install.php install --db_driver mysqli --db_host $CliqrTier_Database_PUBLIC_IP --db_user root --db_password opencart --db_name opencart --username admin --password admin --email ratmistr@cisco.com --agree_tnc yes --http_server http://$HTTP_SERVER/
+php cli_install.php install --db_driver mysqli --db_host $CliqrTier_Database_PUBLIC_IP --db_username root --db_password opencart --db_name opencart --username admin --password admin --email ratmistr@cisco.com --agree_tnc yes --http_server http://$HTTP_SERVER/
 touch $OPENCART_INSTALLED_FILE
 
 exit 0
@@ -225,7 +225,7 @@ iPause=3
 echo -n "Configuring Opencart ... "
 while [ $iRetries -ge 0 ]; do  
 
-  php cli_install.php install --db_driver mysqli --db_hostname $CliqrTier_Database_IP --db_user opencart --db_password opencart --db_name opencart --username admin --password admin --email youremail@example.com --agree_tnc yes --http_server http://$Apache_IP/
+  php cli_install.php install --db_driver mysqli --db_hostname $CliqrTier_Database_IP --db_username opencart --db_password opencart --db_name opencart --username admin --password admin --email youremail@example.com --agree_tnc yes --http_server http://$Apache_IP/
 
   er=$?
   if [ $er -eq 0 ]; then
