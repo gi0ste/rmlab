@@ -8,7 +8,7 @@ set -e
 
 . /usr/local/osmosix/etc/userenv
 . /usr/local/osmosix/service/utils/agent_util.sh
-if[ -e /etc/yum.repos.d] then
+if[ -e /etc/yum.repos.d/cliqr.repo ] then
   sudo sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/cliqr.repo
 fi
 
