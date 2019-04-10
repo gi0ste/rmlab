@@ -7,10 +7,10 @@ exec > >(tee -a /var/tmp/install_jenkins-_$$.log) 2>&1
 #set -e
 
 . /usr/local/osmosix/etc/userenv
-. /usr/local/osmosix/service/utils/agent_util.sh
-if[ -e /etc/yum.repos.d/cliqr.repo ] then
+. /usr/local/osmosix/service/utils/agent_util.sh#
+#if[ -e /etc/yum.repos.d/cliqr.repo ] then
   sudo sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/cliqr.repo
-fi
+#fi
 
 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
