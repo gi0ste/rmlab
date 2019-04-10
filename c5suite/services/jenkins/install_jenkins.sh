@@ -4,7 +4,7 @@
 # and finally install latest jenkins version
 
 exec > >(tee -a /var/tmp/install_jenkins-_$$.log) 2>&1
-set -e
+#set -e
 
 . /usr/local/osmosix/etc/userenv
 . /usr/local/osmosix/service/utils/agent_util.sh
