@@ -1,11 +1,9 @@
-#!/bin/bash -x
-#exec > >(tee -a ./appd_agent_java_$$.log) 2>&1
-#set -e
-. /usr/local/osmosix/etc/.osmosix.sh
-. /usr/local/osmosix/etc/userenv
-. /usr/local/osmosix/service/utils/cfgutil.sh
-. /usr/local/osmosix/service/utils/agent_util.sh
+#!/bin/bash -xe
+exec > >(tee -a /var/tmp/appd_agent_machine_$$.log) 2>&1
+set -e
 
+. /usr/local/osmosix/etc/userenv
+. /usr/local/osmosix/service/utils/agent_util.sh
 
 # AppDynamics variables
 AGENT_LOCATION="http://www.stefanogioia.com/appdynamics" #Where to donwload the agent
@@ -19,7 +17,7 @@ sudo yum install -y ${prereqs}
 
 #Downloading the AppD Agent
 agentSendLogMessage "Downloading the AppDynamics Machine Agent..."
-wget --proxy=off ${AGENT_LOCATION}/${AGENT_VERSION}
+sudo wget --proxy=off ${AGENT_LOCATION}/${AGENT_VERSION}
 
 # Install the AppD Agent
 agentSendLogMessage "Installing the AppDynamics Machine Agent..."
@@ -31,6 +29,7 @@ sudo sed -i -e "s%<controller-host>%<controller-host>${APPD_CONF_CONTROLLER_HOST
 -e "s%<controller-port>%<controller-port>${APPD_CONF_CONTROLLER_PORT}%g" \
 -e "s%<account-access-key>%<account-access-key>${APPD_CONF_ACCESS_KEY}%g" \
 -e "s%<account-name>%<account-name>${APPD_CONF_ACCOUNT}%g" \
+-e "s%<sim-enabled>false%<sim-enabled>true%g" \
 /opt/appdynamics/machine-agent/conf/controller-info.xml
 
 # Starting Machine Agent
@@ -40,6 +39,6 @@ sudo service appdynamics-machine-agent start
 
 # Clean up the temporary file and the agent package file
 agentSendLogMessage "Cleaning files... AppDynamics Machine Agent..."
-rm -rf $AGENT_VERSION
+#rm -rf $AGENT_VERSION
 
-agentSendLogMessage "AppD: Machine Agent Installation done!"
+#agentSendLogMessage "AppD: Machine Agent Installation done!"
