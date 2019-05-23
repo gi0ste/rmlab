@@ -1,0 +1,186 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0175CTD897GYS6bGALyQ19f4NBe99ioJYT7",
+    "name": "Day-1-Operations",
+    "title": "Day-1-Operations",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "CC_RUN_ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0175CTN9DND7F3p4kabzLDVYTU81p4Bcal1",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "depends_on": "CC",
+      "display_name": "Day-1-Operations",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0175CTQMFLLN92tASAvJlbgCjsglziNygD9",
+        "name": "Get Workload Manager Context",
+        "title": "Get Workload Manager Context",
+        "type": "ccs.get_cloud_context",
+        "base_type": "activity",
+        "properties": {
+          "action_id": "103",
+          "action_timeout": 180,
+          "cc_configuration": {
+            "execute_action": "on_vm",
+            "reboot_vm": false,
+            "resource_mappings": [
+              {
+                "applied_to": {
+                  "app_ids": [
+                    {
+                      "id": "127",
+                      "name": "apache2_4"
+                    },
+                    {
+                      "id": "52",
+                      "name": "Apache Mesos (vm)"
+                    },
+                    {
+                      "id": "56",
+                      "name": "AppDynamics"
+                    },
+                    {
+                      "id": "29",
+                      "name": "CentOS 7"
+                    },
+                    {
+                      "id": "128",
+                      "name": "CrayonSampleDB"
+                    },
+                    {
+                      "id": "120",
+                      "name": "Jenkins"
+                    },
+                    {
+                      "id": "48",
+                      "name": "Magento (vm)"
+                    },
+                    {
+                      "id": "126",
+                      "name": "nginx_2"
+                    },
+                    {
+                      "id": "34",
+                      "name": "OpenCart"
+                    },
+                    {
+                      "id": "44",
+                      "name": "PetClinic (vm)"
+                    },
+                    {
+                      "id": "132",
+                      "name": "Survivor"
+                    },
+                    {
+                      "id": "37",
+                      "name": "Wordpress"
+                    }
+                  ]
+                },
+                "resource_type": "app_profile",
+                "resource_type_meta_info": {
+                  "app_profile": {
+                    "app_ids": "All"
+                  }
+                }
+              }
+            ],
+            "sync_vm": false,
+            "wf_availability_type": "lifecycle"
+          },
+          "cc_run_id": "$workflow.definition_workflow_0175CTD897GYS6bGALyQ19f4NBe99ioJYT7.input.variable_workflow_0175CTN9DND7F3p4kabzLDVYTU81p4Bcal1$",
+          "continue_on_failure": false,
+          "display_name": "Get Workload Manager Context",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0175CU4JY4JDT7Od4C1mSpO7cSE7yg8dQlN",
+        "name": "Execute Action on Virtual Machine",
+        "title": "Execute Action on Virtual Machine",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Execute Action on Virtual Machine",
+          "input": {
+            "variable_workflow_015Q5TRQU0NR76bNPf9Dig2ZYqn0pSzGrZJ": "$activity.definition_activity_0175CTQMFLLN92tASAvJlbgCjsglziNygD9.output.action_type$",
+            "variable_workflow_015Q5TRQU0RSB0srOAWK5ovUJnepIqjYXdZ": "Suite Internal Target",
+            "variable_workflow_015Q5TRQU0TQR2BR5jjEWsxeCbEHT9e9Snp": "null",
+            "variable_workflow_015Q5TRQU0VLV1LZiarYWvj1VIOyNUBbtoH": "sudo touch /tmp/day-1-operations.txt",
+            "variable_workflow_015Q5TRQU0Z5Q23uTDNXyNWxF5sw2pjzN2e": 10,
+            "variable_workflow_015Q5TRQU10WN1HHzNjNxFkODAk9mI8CahH": "$activity.definition_activity_0175CTQMFLLN92tASAvJlbgCjsglziNygD9.output.response_body$",
+            "variable_workflow_015Q5TRQU12O17fOpvkrDv4rNnRR1jJrzIX": 30
+          },
+          "target": {
+            "execute_on_this_target_group": true,
+            "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+          },
+          "workflow_id": "definition_workflow_015Q5TR3402O44eo7tgPOduD0fmWQiO7TML"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "target_groups": {
+    "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I": {
+      "unique_name": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I",
+      "name": "CCS Target Group",
+      "title": "CCS Target Group",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "ccsuite.endpoint",
+          "view_target_type": "ccsuite.endpoint",
+          "include_all_targets": true
+        },
+        {
+          "data_target_type": "ccsuite.integration_endpoint",
+          "view_target_type": "ccsuite.integration_endpoint",
+          "include_all_targets": true
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_015Q5TR3402O44eo7tgPOduD0fmWQiO7TML"
+  ]
+}
