@@ -13,7 +13,7 @@ exec > >(tee -a /var/tmp/jfrog-node-init_$$.log) 2>&1
 
 agentSendLogMessage "Installing jFrog Artifactory..."
 #agentSendLogMessage "Installing java..."
-#sudo yum install java -y
+sudo yum install java -y
 
 #sudo wget wget -e https_proxy=$PROXY_ADDRESS https://bintray.com/jfrog/artifactory-rpms/rpm -O bintray-jfrog-artifactory-rpms.repo
 
