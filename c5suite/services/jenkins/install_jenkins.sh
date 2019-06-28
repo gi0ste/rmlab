@@ -4,10 +4,10 @@
 # and finally install latest jenkins version
 
 exec > >(tee -a /var/tmp/install_jenkins-_$$.log) 2>&1
-#set -e
 
 . /usr/local/osmosix/etc/userenv
-. /usr/local/osmosix/service/utils/agent_util.sh#
+. /usr/local/osmosix/service/utils/agent_util.sh
+
 #if[ -e /etc/yum.repos.d/cliqr.repo ] then
   sudo sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/cliqr.repo
 #fi
