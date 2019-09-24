@@ -1,0 +1,177 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "cisco butler",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "CloudInfoIntent",
+                    "slots": [],
+                    "samples": [
+                        "tell me how many clouds I have",
+                        "list all clouds",
+                        "how may clouds are configured"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "ActionsIntent",
+                    "slots": [],
+                    "samples": [
+                        "list all my actions",
+                        "how many actions I have"
+                    ]
+                },
+                {
+                    "name": "DeployIntent",
+                    "slots": [
+                        {
+                            "name": "cloud",
+                            "type": "cloudType"
+                        },
+                        {
+                            "name": "dbType",
+                            "type": "databaseType"
+                        }
+                    ],
+                    "samples": [
+                        "I want a database",
+                        "I need a database",
+                        "deploy a {dbType} to {cloud}",
+                        "deploy {dbType} to {cloud}"
+                    ]
+                },
+                {
+                    "name": "CostReportIntent",
+                    "slots": [],
+                    "samples": [
+                        "tell me how much I spent",
+                        "how much I spent "
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "cloudType",
+                    "values": [
+                        {
+                            "id": "aws",
+                            "name": {
+                                "value": "aws"
+                            }
+                        },
+                        {
+                            "id": "gcp",
+                            "name": {
+                                "value": "gcp",
+                                "synonyms": [
+                                    "google"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "databaseType",
+                    "values": [
+                        {
+                            "id": "psql",
+                            "name": {
+                                "value": "psql",
+                                "synonyms": [
+                                    "postgresql"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "mysql",
+                            "name": {
+                                "value": "mysql"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "DeployIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "cloud",
+                            "type": "cloudType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.205038821041.1140512769519"
+                            }
+                        },
+                        {
+                            "name": "dbType",
+                            "type": "databaseType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.205038821041.928518672494"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.205038821041.1140512769519",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I can use GCP or AWS cloud. Which one do you want?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Do you want to deploy in Google or Amazon?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "on which cloud?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.205038821041.928518672494",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I can deploy MySQL or PSQL. Which one do you want?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Do you want a MySQL or PSQL?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "mySQL or PSQL?"
+                    }
+                ]
+            }
+        ]
+    }
+}
