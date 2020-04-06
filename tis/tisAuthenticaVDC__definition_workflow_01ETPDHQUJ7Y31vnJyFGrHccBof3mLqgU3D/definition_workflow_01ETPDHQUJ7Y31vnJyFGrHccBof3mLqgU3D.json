@@ -1,0 +1,182 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01ETPDHQUJ7Y31vnJyFGrHccBof3mLqgU3D",
+    "name": "Authenticate on vCD",
+    "title": "Authenticate on vCD",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "authToken",
+          "type": "datatype.string",
+          "description": "X-VMWARE-VCLOUD-ACCESS-TOKEN",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01ETPFI53BGZC7a0shrQ0tfs5qAuip38xea",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "SPARKLE",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "display_name": "Authenticate on vCD",
+      "runtime_user": {
+        "runtime_user_id": "definition_runtime_user_01ETPDDME7POW7XHxX38j4Ulxf4N0i7tsbK",
+        "override_target_runtime_user": true,
+        "runtime_user_type": "runtime_user.web-service_basic_credentials"
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01ETPDKBROVLC55TMP4EFfHVM11h9SEnyIU",
+        "name": "HTTP Request",
+        "title": "Login to vCD",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/*;version=32.0",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Login to vCD",
+          "method": "POST",
+          "relative_url": "api/sessions",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01ETSHQQBKRPM7daRkg656jrbBTwe7ublE5",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_01ETPDKBROVLC55TMP4EFfHVM11h9SEnyIU.output.response_headers$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01ETSJ7FIB4J471T0Tw2Ep5V6MxibASt1et",
+            "name": "Condition Block",
+            "title": "Condition Block",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Condition Block",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01ETSJ7H3GDL01aHQrv9d3JuTevtOdMTU6i",
+                "name": "Condition Branch",
+                "title": "if= X-VMWARE-VCLOUD-ACCESS-TOKEN",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01ETSHQQBKRPM7daRkg656jrbBTwe7ublE5.input.source_array[@].name$",
+                    "operator": "eqi",
+                    "right_operand": "X-VMWARE-VCLOUD-ACCESS-TOKEN"
+                  },
+                  "continue_on_failure": false,
+                  "description": "check if the header name is \nX-VMWARE-VCLOUD-ACCESS-TOKEN",
+                  "display_name": "if= X-VMWARE-VCLOUD-ACCESS-TOKEN",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01ETSK96OSUN05zxYgmbIejyx2TMUlNpy2u",
+                    "name": "Set Variables",
+                    "title": "Set Auth Token",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "description": "Set  X-VMWARE-VCLOUD-ACCESS-TOKEN value to the worflow output variable",
+                      "display_name": "Set Auth Token",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01ETPDHQUJ7Y31vnJyFGrHccBof3mLqgU3D.output.variable_workflow_01ETPFI53BGZC7a0shrQ0tfs5qAuip38xea$",
+                          "variable_value_new": "$activity.definition_activity_01ETSHQQBKRPM7daRkg656jrbBTwe7ublE5.input.source_array[@].value$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201": {
+      "unique_name": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+      "name": "vCloudDirector",
+      "title": "vCloudDirector",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "vCloudDirector",
+        "host": "20.172.58.250",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01ETPDDME7POW7XHxX38j4Ulxf4N0i7tsbK": {
+      "unique_name": "definition_runtime_user_01ETPDDME7POW7XHxX38j4Ulxf4N0i7tsbK",
+      "name": "cso",
+      "title": "cso",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "cso"
+      }
+    }
+  }
+}
