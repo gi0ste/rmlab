@@ -1,0 +1,232 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01EXB90JTN2RP5QasZhCD8exy1hPQr9ARC8",
+    "name": "getVCD NetworkPool Reference",
+    "title": "getVCD NetworkPool Reference",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "NetworkPoolRef",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EXBGQ5UK5IH51ivKYygmVr9W4AdbnPFC1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "AuthToken",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01EXB9M23BAQB3MuKpc633mHTheRvZuU7Jb",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "SPARKLE",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "display_name": "getVCD NetworkPool Reference",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01EXB9O6QQEDA0dejSunmUzdM1bnMbLqhXl",
+        "name": "HTTP Request",
+        "title": "get vCloud Information",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/*+json;version=32.0",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01EXB90JTN2RP5QasZhCD8exy1hPQr9ARC8.input.variable_workflow_01EXB9M23BAQB3MuKpc633mHTheRvZuU7Jb$"
+            }
+          ],
+          "display_name": "get vCloud Information",
+          "method": "GET",
+          "relative_url": "api/admin/extension",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXBBGVAYGT56uAQgXUJjk36wsmVP25TnM",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "JSONPath Query",
+          "input_json": "$activity.definition_activity_01EXB9O6QQEDA0dejSunmUzdM1bnMbLqhXl.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.link[?(@.type=='application/vnd.vmware.admin.vmwExternalNetworkReferences+xml')].href",
+              "jsonpath_query_name": "NTP Reference",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXD1UYBU91K6PSsJ17Biz8RIBB9RM0ThZ",
+        "name": "Match Regular Expression",
+        "title": "Match Regular Expression",
+        "type": "core.matchregex",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Match Regular Expression",
+          "input_regex": "api?.*",
+          "input_string": "$activity.definition_activity_01EXBBGVAYGT56uAQgXUJjk36wsmVP25TnM.output.jsonpath_queries.NTP Reference$",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXCXWHTL6KK2tAmiQODEs6QYsuKauupTs",
+        "name": "HTTP Request",
+        "title": "get Network Pool",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/*+json;version=32.0",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01EXB90JTN2RP5QasZhCD8exy1hPQr9ARC8.input.variable_workflow_01EXB9M23BAQB3MuKpc633mHTheRvZuU7Jb$"
+            }
+          ],
+          "display_name": "get Network Pool",
+          "method": "GET",
+          "relative_url": "$activity.definition_activity_01EXD1UYBU91K6PSsJ17Biz8RIBB9RM0ThZ.output.matching_strings[0]$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXCZ9GJOTGB5P0Etz0ofAY3An8dGQxdTv",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "JSONPath Query",
+          "input_json": "$activity.definition_activity_01EXCXWHTL6KK2tAmiQODEs6QYsuKauupTs.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.externalNetworkReference[0].href",
+              "jsonpath_query_name": "NetworkPoolReference",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXBGSM8BRPL3yziI20Jpjsrjzy0eXptc7",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01EXB90JTN2RP5QasZhCD8exy1hPQr9ARC8.output.variable_workflow_01EXBGQ5UK5IH51ivKYygmVr9W4AdbnPFC1$",
+              "variable_value_new": "$activity.definition_activity_01EXCZ9GJOTGB5P0Etz0ofAY3An8dGQxdTv.output.jsonpath_queries.NetworkPoolReference$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_01ETSNDWNGCKG2pAs035KMaV0vOxOL8hUMg"
+    ]
+  },
+  "categories": {
+    "category_01ETSNDWNGCKG2pAs035KMaV0vOxOL8hUMg": {
+      "unique_name": "category_01ETSNDWNGCKG2pAs035KMaV0vOxOL8hUMg",
+      "name": "VCloud.Director",
+      "title": "VCloud.Director",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201": {
+      "unique_name": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+      "name": "vCloudDirector",
+      "title": "vCloudDirector",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "vCloudDirector",
+        "host": "20.172.58.250",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  }
+}
