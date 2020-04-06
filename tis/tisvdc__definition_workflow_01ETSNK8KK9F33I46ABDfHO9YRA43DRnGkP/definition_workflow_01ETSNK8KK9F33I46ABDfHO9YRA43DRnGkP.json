@@ -1,0 +1,603 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP",
+    "name": "VCD Create Organization",
+    "title": "VCD Create Organization",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Organization Full Name",
+          "type": "datatype.string",
+          "description": "The name of the organization",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01ETTJV2O8AIB6YkPe0Za3mEFGRwZ7dim8q",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 10,
+          "scope": "input",
+          "name": "CPU Allocated (in MHz)",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EXBPB2HG31O72ml4BMMwfotWUBUXiHmXT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 10,
+          "scope": "input",
+          "name": "CPU Limit (MHz)",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EXBPNNS2GH865pUNFmkPXb9UgA07Hv5WA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Francesco Totti",
+          "scope": "input",
+          "name": "Admin Full Name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01EXCHBVMO1CW0RGgHodXrPWavdS3I2c6by",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 5120,
+          "scope": "input",
+          "name": "Storage Limit (MB)",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EXBT08QYF8Q6s7RyhNAUmTPzmMUNwZUQq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "jsonOutput",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EX5TGRO9QL10w0LR5KVbE31CYUqC692m1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 2048,
+          "scope": "input",
+          "name": "RAM Allocated (MB)",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EXBQA8CWM1T2I8BFW9zzoUXpwWdsg5i7O",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 2048,
+          "scope": "input",
+          "name": "RAM LImit",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EXBQOV6V20P7ZMxptkJxl7HApsF02B9ub",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": " AllocationVApp",
+          "scope": "input",
+          "name": "Allocation Model",
+          "type": "datatype.string",
+          "description": "Could be:\n - AllocationVApp\n",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EXBRIRF6PNE2aLJnt5dWmwaEu8qYwyHGO",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Organization Name",
+          "type": "datatype.string",
+          "description": "Short name of the organization",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01ETTPFJQ7IIY0DWVftWCfuaFE1ivo4biOM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "ftotti",
+          "scope": "input",
+          "name": "Admin UserName",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01EXCG0TGT6KE3QUOh3Y0dRg6HIzi2JIExw",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "VCD Create Organization",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01ETT2NZ65AOC4TXk2XOG6qyUGPLhilLWkd",
+        "name": "Authenticate on vCD",
+        "title": "Authenticate on vCD",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "display_name": "Authenticate on vCD",
+          "runtime_user": {
+            "override_target_runtime_user": true,
+            "runtime_user_id": "definition_runtime_user_01ETPDDME7POW7XHxX38j4Ulxf4N0i7tsbK",
+            "runtime_user_type": "runtime_user.web-service_basic_credentials"
+          },
+          "target": {
+            "execute_on_this_target": true,
+            "target_id": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+            "target_type": "web-service.endpoint"
+          },
+          "workflow_id": "definition_workflow_01ETPDHQUJ7Y31vnJyFGrHccBof3mLqgU3D"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01ETT9YSQPUVY7JQzODIjvfaorLzTfjW5Dc",
+        "name": "HTTP Request",
+        "title": "Create Organization",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "\u003c?xml version=\"1.0\" encoding=\"UTF-8\"?\u003e\u003cvcloud:AdminOrg\n    xmlns:vcloud=\"http://www.vmware.com/vcloud/v1.5\"\n    name=\"$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01ETTPFJQ7IIY0DWVftWCfuaFE1ivo4biOM$\"\u003e\n    \u003cvcloud:FullName\u003e$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01ETTJV2O8AIB6YkPe0Za3mEFGRwZ7dim8q$\u003c/vcloud:FullName\u003e\n    \u003cvcloud:Settings\u003e\n        \u003cvcloud:OrgGeneralSettings\u003e\n            \u003cvcloud:CanPublishCatalogs\u003etrue\u003c/vcloud:CanPublishCatalogs\u003e\n            \u003cvcloud:DeployedVMQuota\u003e10\u003c/vcloud:DeployedVMQuota\u003e\n            \u003cvcloud:StoredVmQuota\u003e15\u003c/vcloud:StoredVmQuota\u003e\n            \u003cvcloud:UseServerBootSequence\u003efalse\u003c/vcloud:UseServerBootSequence\u003e\n            \u003cvcloud:DelayAfterPowerOnSeconds\u003e1\u003c/vcloud:DelayAfterPowerOnSeconds\u003e\n        \u003c/vcloud:OrgGeneralSettings\u003e\n    \u003c/vcloud:Settings\u003e\n\u003c/vcloud:AdminOrg\u003e",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/vnd.vmware.admin.organization+xml"
+            },
+            {
+              "name": "Accept",
+              "value": "application/*+json;version=32.0"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_01ETT2NZ65AOC4TXk2XOG6qyUGPLhilLWkd.output.variable_workflow_01ETPFI53BGZC7a0shrQ0tfs5qAuip38xea$"
+            }
+          ],
+          "description": "/api/admin/orgs",
+          "display_name": "Create Organization",
+          "method": "POST",
+          "relative_url": "api/admin/orgs",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EX736XSQ5EG3HskOajrWdKeB6rwmVpdCy",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "JSONPath Query",
+          "input_json": "$activity.definition_activity_01ETT9YSQPUVY7JQzODIjvfaorLzTfjW5Dc.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.roleReferences.roleReference[?(@.name=='Organization Administrator')].href",
+              "jsonpath_query_name": "RoleReference",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.id",
+              "jsonpath_query_name": "OrgID",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.link[?(@.type=='application/vnd.vmware.admin.createVdcParams+xml')].href",
+              "jsonpath_query_name": "CreateVDCReference",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EX77D39YGG86IbjKWRMarLSkinP9ln9vm",
+        "name": "Match Regular Expression",
+        "title": "Match Regular Expression",
+        "type": "core.matchregex",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Match Regular Expression",
+          "input_regex": "[^:]*$",
+          "input_string": "$activity.definition_activity_01EX736XSQ5EG3HskOajrWdKeB6rwmVpdCy.output.jsonpath_queries.OrgID$",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EX9ATWCMMP50ge5oRh5weBcFerqaUBapI",
+        "name": "Create vDC Admin user",
+        "title": "Create vDC Admin user",
+        "type": "workflow.sub_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Create vDC Admin user",
+          "input": {
+            "variable_workflow_01EX5WS1MBD1809LvOeizY0vFnLytV3QuqW": "$activity.definition_activity_01ETT2NZ65AOC4TXk2XOG6qyUGPLhilLWkd.output.variable_workflow_01ETPFI53BGZC7a0shrQ0tfs5qAuip38xea$",
+            "variable_workflow_01EX5YJUPDQDU0uNb8c4yKPrTdpdh5l4IOK": "Example User Full Name$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXCHBVMO1CW0RGgHodXrPWavdS3I2c6by$",
+            "variable_workflow_01EX5ZD7ZND681BOo9LIVhvYlcPjC8uV2Q4": "$activity.definition_activity_01EX736XSQ5EG3HskOajrWdKeB6rwmVpdCy.output.jsonpath_queries.RoleReference$",
+            "variable_workflow_01EX8QB0AS8I653bz6ZJBLSHnqxaoHZfh3K": "$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXCG0TGT6KE3QUOh3Y0dRg6HIzi2JIExw$@example.com",
+            "variable_workflow_01EX8QHHPV9FO1Ff3uNoesYiObaz92CNr3p": "$activity.definition_activity_01EX77D39YGG86IbjKWRMarLSkinP9ln9vm.output.matching_strings[0]$",
+            "variable_workflow_01EX936M53ZG16Fu5gPti7Z1FkQgszhTOQ1": "$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXCG0TGT6KE3QUOh3Y0dRg6HIzi2JIExw$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "target_type": "01DY7FP6RQW2U0OCdtxLhJwnxJkI8QRH7Wh",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXC34X7T7VI3sfANBxTOc3u29lkLUkr29",
+        "name": "get vDC Provider Reference",
+        "title": "get vDC Provider Reference",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "get vDC Provider Reference",
+          "input": {
+            "variable_workflow_01EXA2HNFII0G0wrha6AMbJ89HSMP4s9qvB": "$activity.definition_activity_01ETT2NZ65AOC4TXk2XOG6qyUGPLhilLWkd.output.variable_workflow_01ETPFI53BGZC7a0shrQ0tfs5qAuip38xea$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "execute_on_this_target": true,
+            "target_id": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+            "target_type": "web-service.endpoint"
+          },
+          "workflow_id": "definition_workflow_01EXA0V76Z4HD2WqPcFokX6ijYq30L7Pr3g"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXDJ0Q4Q9U76saSWHxkuLsiSu8Hct3AgE",
+        "name": "getVCD NetworkPool Reference",
+        "title": "getVCD NetworkPool Reference",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "getVCD NetworkPool Reference",
+          "input": {
+            "variable_workflow_01EXB9M23BAQB3MuKpc633mHTheRvZuU7Jb": "$activity.definition_activity_01ETT2NZ65AOC4TXk2XOG6qyUGPLhilLWkd.output.variable_workflow_01ETPFI53BGZC7a0shrQ0tfs5qAuip38xea$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "execute_on_this_target": true,
+            "target_id": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+            "target_type": "web-service.endpoint"
+          },
+          "workflow_id": "definition_workflow_01EXB90JTN2RP5QasZhCD8exy1hPQr9ARC8"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EXBO7RQN43I3YcoqlKH569D8FuUxDn2vG",
+        "name": "HTTP Request",
+        "title": "Create Org VDC",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/*+json;version=32.0",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "\u003c?xml version=\"1.0\" encoding=\"UTF-8\"?\u003e\n\u003cCreateVdcParams\n   name=\"$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01ETTPFJQ7IIY0DWVftWCfuaFE1ivo4biOM$_vdc\"\n   \n  \n  xmlns=\"http://www.vmware.com/vcloud/v1.5\"\u003e\n  \u003cDescription\u003e$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01ETTJV2O8AIB6YkPe0Za3mEFGRwZ7dim8q$ VDC\u003c/Description\u003e\n  \u003cAllocationModel\u003eAllocationVApp\u003c/AllocationModel\u003e\n  \u003cComputeCapacity\u003e\n    \u003cCpu\u003e\n      \u003cUnits\u003eMHz\u003c/Units\u003e\n      \u003cAllocated\u003e$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXBPB2HG31O72ml4BMMwfotWUBUXiHmXT$\u003c/Allocated\u003e\n      \u003cLimit\u003e$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXBPNNS2GH865pUNFmkPXb9UgA07Hv5WA$\u003c/Limit\u003e\n    \u003c/Cpu\u003e\n    \u003cMemory\u003e\n      \u003cUnits\u003eMB\u003c/Units\u003e\n      \u003cAllocated\u003e$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXBQA8CWM1T2I8BFW9zzoUXpwWdsg5i7O$\u003c/Allocated\u003e\n      \u003cLimit\u003e$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXBQOV6V20P7ZMxptkJxl7HApsF02B9ub$\u003c/Limit\u003e\n    \u003c/Memory\u003e\n  \u003c/ComputeCapacity\u003e\n  \u003cNicQuota\u003e0\u003c/NicQuota\u003e\n  \u003cNetworkQuota\u003e100\u003c/NetworkQuota\u003e\n  \u003cVdcStorageProfile\u003e\n    \u003cEnabled\u003etrue\u003c/Enabled\u003e\n    \u003cUnits\u003eMB\u003c/Units\u003e\n    \u003cLimit\u003e$workflow.definition_workflow_01ETSNK8KK9F33I46ABDfHO9YRA43DRnGkP.input.variable_workflow_01EXBT08QYF8Q6s7RyhNAUmTPzmMUNwZUQq$\u003c/Limit\u003e\n    \u003cDefault\u003etrue\u003c/Default\u003e\n    \u003cProviderVdcStorageProfile\n         href=\"https://20.172.58.250/api/admin/pvdcStorageProfile/52d7327b-3d0e-49ee-85ff-4e3f7b90f5d5\" /\u003e\n  \u003c/VdcStorageProfile\u003e\n  \u003cResourceGuaranteedMemory\u003e1\u003c/ResourceGuaranteedMemory\u003e\n  \u003cResourceGuaranteedCpu\u003e1\u003c/ResourceGuaranteedCpu\u003e\n  \u003cVCpuInMhz\u003e2048\u003c/VCpuInMhz\u003e\n  \u003cIsThinProvision\u003efalse\u003c/IsThinProvision\u003e\n  \u003cNetworkPoolReference\n      href=\"$activity.definition_activity_01EXDJ0Q4Q9U76saSWHxkuLsiSu8Hct3AgE.output.variable_workflow_01EXBGQ5UK5IH51ivKYygmVr9W4AdbnPFC1$\"/\u003e\n  \u003cProviderVdcReference\n      name=\"Main Provider\"\n      href=\"$activity.definition_activity_01EXC34X7T7VI3sfANBxTOc3u29lkLUkr29.output.variable_workflow_01EXA59PS95OG5TEcy5MLfwEmXriLO38ABy$\" /\u003e\n  \u003cUsesFastProvisioning\u003etrue\u003c/UsesFastProvisioning\u003e\n\u003c/CreateVdcParams\u003e",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/vnd.vmware.admin.createVdcParams+xml"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_01ETT2NZ65AOC4TXk2XOG6qyUGPLhilLWkd.output.variable_workflow_01ETPFI53BGZC7a0shrQ0tfs5qAuip38xea$"
+            }
+          ],
+          "display_name": "Create Org VDC",
+          "method": "POST",
+          "relative_url": "/api/admin/org/$activity.definition_activity_01EX77D39YGG86IbjKWRMarLSkinP9ln9vm.output.matching_strings[0]$/vdcsparams",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_01ETSNDWNGCKG2pAs035KMaV0vOxOL8hUMg"
+    ]
+  },
+  "categories": {
+    "category_01ETSNDWNGCKG2pAs035KMaV0vOxOL8hUMg": {
+      "unique_name": "category_01ETSNDWNGCKG2pAs035KMaV0vOxOL8hUMg",
+      "name": "VCloud.Director",
+      "title": "VCloud.Director",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201": {
+      "unique_name": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+      "name": "vCloudDirector",
+      "title": "vCloudDirector",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "vCloudDirector",
+        "host": "20.172.58.250",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01ETPDDME7POW7XHxX38j4Ulxf4N0i7tsbK": {
+      "unique_name": "definition_runtime_user_01ETPDDME7POW7XHxX38j4Ulxf4N0i7tsbK",
+      "name": "cso",
+      "title": "cso",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "cso"
+      }
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN",
+        "name": "Create vDC Admin user",
+        "title": "Create vDC Admin user",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "user@example.com",
+              "scope": "input",
+              "name": "email_address",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01EX8QB0AS8I653bz6ZJBLSHnqxaoHZfh3K",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "org_id",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01EX8QHHPV9FO1Ff3uNoesYiObaz92CNr3p",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "sample",
+              "scope": "input",
+              "name": "username",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01EX936M53ZG16Fu5gPti7Z1FkQgszhTOQ1",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "authToken",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01EX5WS1MBD1809LvOeizY0vFnLytV3QuqW",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "Example User Full Name",
+              "scope": "input",
+              "name": "Full Name",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01EX5YJUPDQDU0uNb8c4yKPrTdpdh5l4IOK",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "VDC Role",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01EX5ZD7ZND681BOo9LIVhvYlcPjC8uV2Q4",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "description": "Create a vDC Org Admin User with default password",
+          "display_name": "Create vDC Admin user",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "target_type": "web-service.endpoint",
+            "target_id": "definition_target_01ETPDF3QULQM0mh44MgLFuCZiO66LPc201",
+            "execute_on_workflow_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01EX5WUMWTPXW5PDSvdLXQqTD1iIlWfa0xO",
+            "name": "HTTP Request",
+            "title": "Create Admin User",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "body": "\u003c?xml version=\"1.0\" encoding=\"UTF-8\"?\u003e\n\u003cUser\n  \n  xmlns=\"http://www.vmware.com/vcloud/v1.5\"\n   name=\"$workflow.definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN.input.variable_workflow_01EX936M53ZG16Fu5gPti7Z1FkQgszhTOQ1$\" \u003e\n  \u003cFullName\u003e$workflow.definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN.input.variable_workflow_01EX5YJUPDQDU0uNb8c4yKPrTdpdh5l4IOK$\u003c/FullName\u003e\n  \u003cEmailAddress\u003e$workflow.definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN.input.variable_workflow_01EX8QB0AS8I653bz6ZJBLSHnqxaoHZfh3K$\u003c/EmailAddress\u003e\n  \u003cIsEnabled\u003etrue\u003c/IsEnabled\u003e\n  \u003cRole\n      href=\"$workflow.definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN.input.variable_workflow_01EX5ZD7ZND681BOo9LIVhvYlcPjC8uV2Q4$\"/\u003e\n  \u003cPassword\u003ePa55w0rd\u003c/Password\u003e\n  \u003cGroupReferences /\u003e\n\u003c/User\u003e",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "Authorization",
+                  "value": "Bearer $workflow.definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN.input.variable_workflow_01EX5WS1MBD1809LvOeizY0vFnLytV3QuqW$"
+                },
+                {
+                  "name": "Accept",
+                  "value": "application/*+json;version=32.0"
+                },
+                {
+                  "name": "Content-Type",
+                  "value": "application/vnd.vmware.admin.user+xml"
+                }
+              ],
+              "description": "Create an Admin User in the given organization",
+              "display_name": "Create Admin User",
+              "method": "POST",
+              "relative_url": "api/admin/org/$workflow.definition_workflow_01EX5VD7492OO7DGaXwCCOvssh5u1oJgtfN.input.variable_workflow_01EX8QHHPV9FO1Ff3uNoesYiObaz92CNr3p$/users",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    }
+  ],
+  "atomic_workflows": [
+    "definition_workflow_01ETPDHQUJ7Y31vnJyFGrHccBof3mLqgU3D",
+    "definition_workflow_01EXA0V76Z4HD2WqPcFokX6ijYq30L7Pr3g",
+    "definition_workflow_01EXB90JTN2RP5QasZhCD8exy1hPQr9ARC8"
+  ]
+}
