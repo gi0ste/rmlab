@@ -1,0 +1,132 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01CFSX7LICI8K3xUkw63Sgxefep7R0g1jde",
+    "name": "CCS Hide Canceled Jobs",
+    "title": "CCS Hide Canceled Jobs",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Hide all deployment in JobCanceled status",
+      "display_name": "CCS Hide Canceled Jobs",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "no_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01CFSXS7IVS2T394Wvuy4Ei1u50lK50oaZ7",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "display_name": "Generic CCS API Request",
+          "relative_url": "cloudcenter-ccm-backend/api/v2/jobs/?includeStatus=JobCanceled",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01CFVBCZWY3853un4ga48ooNTxZvjAkr40M",
+        "name": "Read Table from JSON",
+        "title": "Read Table from JSON",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Table from JSON",
+          "input_json": "$activity.definition_activity_01CFSXS7IVS2T394Wvuy4Ei1u50lK50oaZ7.output.response_body$",
+          "jsonpath_query": "$.jobs[?(@.status=='JobCanceled')]",
+          "persist_output": true,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01CFWRK9EVAYL2KP9MqGUWJgiwDJwcZVc9H",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_01CFVBCZWY3853un4ga48ooNTxZvjAkr40M.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01D3TVR873IQQ6QpWeMSdj7tnluDE424ZZu",
+            "name": "Generic CCS API Request",
+            "title": "Generic CCS API Request",
+            "type": "ccs.api_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "api_body": "{\"action\": \"HIDE\"}",
+              "api_call_method": "PUT",
+              "continue_on_failure": false,
+              "display_name": "Generic CCS API Request",
+              "relative_url": "cloudcenter-ccm-backend/api/v2/jobs/$activity.definition_activity_01CFVBCZWY3853un4ga48ooNTxZvjAkr40M.output.read_table_from_json[0].id$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01F5KW4PDQ4XL0sImx0oppSW2idtn7humJT"
+    ]
+  },
+  "categories": {
+    "category_01F5KW4PDQ4XL0sImx0oppSW2idtn7humJT": {
+      "unique_name": "category_01F5KW4PDQ4XL0sImx0oppSW2idtn7humJT",
+      "name": "CCS.Integration",
+      "title": "CCS.Integration",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  }
+}
