@@ -1,0 +1,812 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS",
+    "name": "Veeam Agent Setup",
+    "title": "Veeam Agent Setup",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "CC_RUN_ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EBYW7LT5LQ84XPYTfBdHzxnemGsJNCh14",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "NODE_ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EC0MZZWMS2J6GEpJJH2tkxwgh52Htin7t",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "function Disable-ieESC\n\n{\n$AdminKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}”\n$UserKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}”\nSet-ItemProperty -Path $AdminKey -Name “IsInstalled” -Value 0\nSet-ItemProperty -Path $UserKey -Name “IsInstalled” -Value 0\nStop-Process -Name Explorer\nWrite-Host “IE Enhanced Security Configuration (ESC) has been disabled.” -ForegroundColor Green\n}",
+          "scope": "static",
+          "name": "IES_script",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EED6K18TAL71jVi05dxkCMwcu41nRbFCv",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "depends_on": "CC",
+      "description": "Installation and configuration of the Veeam management agent and the Veeam backup agent, depending on input parameters, on Ubuntu and Windows VM in any cloud.\nConfiguration of the backup policies via command line on the agent and via REST API exposed by the Veeam Service Provider Console (VSPC). \nThis workflow is part of the implementation of the Backup as a Service.\nThe agents binay files are retrieved by a S3 bucket via http.\nA license file is needed to install the agent on the VM.",
+      "display_name": "Veeam Agent Setup",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "ccsuite.integration_endpoint",
+        "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX",
+        "name": "Get Workload Manager Context",
+        "title": "Get WorkloadM Context",
+        "type": "ccs.get_cloud_context",
+        "base_type": "activity",
+        "properties": {
+          "action_id": "69",
+          "action_timeout": 180,
+          "cc_configuration": {
+            "execute_action": "on_vm",
+            "reboot_vm": false,
+            "resource_mappings": [
+              {
+                "applied_to": {
+                  "app_ids": [
+                    {
+                      "id": "63",
+                      "name": "CentOS Sample"
+                    },
+                    {
+                      "id": "57",
+                      "name": "OpenCart"
+                    },
+                    {
+                      "id": "55",
+                      "name": "RedHat Sample"
+                    },
+                    {
+                      "id": "490",
+                      "name": "testWindowsWorkflow"
+                    },
+                    {
+                      "id": "53",
+                      "name": "Ubuntu Sample"
+                    },
+                    {
+                      "id": "460",
+                      "name": "WebLogic"
+                    },
+                    {
+                      "id": "455",
+                      "name": "WeblogicMedrec"
+                    },
+                    {
+                      "id": "61",
+                      "name": "Windows"
+                    },
+                    {
+                      "id": "468",
+                      "name": "WordPress-Veeam"
+                    }
+                  ]
+                },
+                "resource_type": "app_profile",
+                "resource_type_meta_info": {
+                  "app_profile": {
+                    "app_ids": "All"
+                  }
+                }
+              }
+            ],
+            "sync_vm": false,
+            "wf_availability_type": "lifecycle"
+          },
+          "cc_run_id": "$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.input.variable_workflow_01EBYW7LT5LQ84XPYTfBdHzxnemGsJNCh14$",
+          "continue_on_failure": false,
+          "display_name": "Get WorkloadM Context",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EC0P9WN8QHJ1fbzrpTXZu3nThtK3zWbcX",
+        "name": "JSONPath Query",
+        "title": "Get Deployment Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get Deployment Details",
+          "input_json": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.parameters.appParams[?(@.name==\"install_sw_agent\")].value",
+              "jsonpath_query_name": "install_agent",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.parameters.appParams[?(@.name==\"parentJobName\")].value",
+              "jsonpath_query_name": "parentJobName",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.name",
+              "jsonpath_query_name": "appTierName",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.id",
+              "jsonpath_query_name": "appTierId",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.virtualMachines[0].hostName",
+              "jsonpath_query_name": "hostname",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.virtualMachines[0].virtualMachineId",
+              "jsonpath_query_name": "vm_id",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EC0VRM8TWUH0M5iZD7CopZacImqWzwJHC",
+        "name": "Generic CCS API Request",
+        "title": "Get VM Details",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "display_name": "Get VM Details",
+          "relative_url": "/cloudcenter-ccm-backend/api/v1/virtualMachines/$activity.definition_activity_01EC0P9WN8QHJ1fbzrpTXZu3nThtK3zWbcX.output.jsonpath_queries.vm_id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EC0XNWPQB2L10g7p7tdSQsTCEPrtLbSja",
+        "name": "JSONPath Query",
+        "title": "Get OS Type",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get OS Type",
+          "input_json": "$activity.definition_activity_01EC0VRM8TWUH0M5iZD7CopZacImqWzwJHC.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.osName",
+              "jsonpath_query_name": "os_name",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.nodeId",
+              "jsonpath_query_name": "id_name",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01EC112GG93HY2XQ5ZnzahPcbQCEmVyGPZv",
+        "name": "Condition Block",
+        "title": "Check OS",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check OS",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01EC112IPSG6F4YusTkbhjJSjIygB6wkADl",
+            "name": "Condition Branch",
+            "title": "Os_name = 'ubuntu'",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01EC0XNWPQB2L10g7p7tdSQsTCEPrtLbSja.output.jsonpath_queries.os_name$",
+                "operator": "eq",
+                "right_operand": "ubuntu"
+              },
+              "continue_on_failure": false,
+              "display_name": "Os_name = 'ubuntu'",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01EC12FY27XIY18jA4V2AKLh1KMYZlZffnk",
+                "name": "Install required tools",
+                "title": "Install required tools",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Install required tools",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "apt-get install -y git;",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01EUN82GT3RSJ6j14eyBxapbVPIyDrfEtZP",
+                "name": "Install required dependencies",
+                "title": "Install required dependencies",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Install required dependencies",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "apt-get -y install dkms; apt-get -y install lvm2;",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01EDQ94H1CBVS7crIGrBVl6Ag8pIpruvMV1",
+                "name": "Download Veeam Agent",
+                "title": "Download Veeam Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Download Veeam Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "git clone https://github.com/DominikGold1/veeam-release; ",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01EDQAVJ4665Z4YvY6L3KM2itWDNCBSxtC5",
+                "name": "Install Veeam Agent",
+                "title": "Install Veeam Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install Veeam Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "cd veeam-release; cd ubuntu; sudo dpkg -i ./veeamsnap*; sudo apt-get update; sudo dpkg -i ./veeam_*; apt-get update; apt-get -y install veeam;",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01EFZPSLS56TL37X6NkTBxgsYnmYmpFNSj4",
+                "name": "Accept Veeam Licenses",
+                "title": "Accept Veeam Licenses",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Accept Veeam Licenses",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig agreement accepteula; veeamconfig agreement acceptthirdpartylicenses;",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F5KHVJJ1DHT3UpvEe04fbg6I0fd1QhRzR",
+                "name": "Install License",
+                "title": "Install License",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install License",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "cd veeam-release; veeamconfig license install --path Veeam-1000instances-backup-trial.lic --workstation",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F5KEUJHGKQ73cB7gxPQBtvibCkZFgxj0Y",
+                "name": "Connect to Filippetti Veeam Cloud",
+                "title": "Connect to Filippetti Veeam Cloud",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Connect to Filippetti Veeam Cloud",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig cloud add --address cgw001.multicloudservices.it --port 6180 --login ccs.admin --password CCSl4bVCSP2020!",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F5KJ9LQWGET1Z4Xyxvp67TK3XpahZ1XWM",
+                "name": "Define VM Backup Job",
+                "title": "Define VM Backup Job",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Define VM Backup Job",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig job create volumelevel --name BackupVM --reponame '[CGW001.MULTICLOUDSERVICES.IT][ccs.admin]VCSP CCS LAB - Repo01' --backupallsystem",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01EC112JN7SVK6hMCh6OJ2jre0vXH3kizdA",
+            "name": "Condition Branch",
+            "title": "OS_NAME='Windows'",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01EC0XNWPQB2L10g7p7tdSQsTCEPrtLbSja.output.jsonpath_queries.os_name$",
+                "operator": "eq",
+                "right_operand": "Microsoft Windows Server 2012 R2 Datacenter"
+              },
+              "continue_on_failure": true,
+              "display_name": "OS_NAME='Windows'",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01EDHO3YRK2P44WsRDciMzw7QEqXTmiol8W",
+                "name": "Download Management Agent",
+                "title": "Download Management Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Download Management Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl https://andreaveeam.s3-eu-west-1.amazonaws.com/VAC.CommunicationAgent.x64.msi -o VAC.msi",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01EHSROPOKOZ31SVCApjgIXW3n9YqzE20hl",
+                "name": "Download Backup Agent",
+                "title": "Download Backup Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Download Backup Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl https://pvt2020.s3-eu-west-1.amazonaws.com/AO/VeeamAgentWindows_4.0.0.1811.exe -o BackupAgent.exe",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F8AEG417AWD2GElmj0FSRLRs0C5KJ6s7F",
+                "name": "Download Veeam license file",
+                "title": "Download Veeam license file",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Download Veeam license file",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl https://andreaveeam.s3-eu-west-1.amazonaws.com/Veeam-1000instances-backup-trial.lic -o license.lic",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F8AHCU8VQHK2aDFY5zE2iXqXrajaxkun2",
+                "name": "Download Configuration XML file",
+                "title": "Download Configuration XML file",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Download Configuration XML file",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl https://andreaveeam.s3-eu-west-1.amazonaws.com/configuration.xml -o configuration.xml",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01EGTKV7GEGJB1hgMV1ZfasRQHD9EVAZXmZ",
+                "name": "Installing Backup Agent",
+                "title": "Installing Backup Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Installing Backup Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command \\\"C:\\\\opt\\\\agentlite\\\\BackupAgent.exe \\/silent \\/accepteula \\/acceptthirdpartylicenses\\\"",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F8AKK7WQ6TT0ss1duGIQBq4pxTdsQkcpM",
+                "name": "Install License File",
+                "title": "Install License File",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install License File",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F8BJZFRIPFJ1Z1uwLXLBm8J7frqhCL3ao",
+                "name": "Import Veeam Backup configuration file",
+                "title": "Import Veeam Backup configuration file",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Import Veeam Backup configuration file",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01F8ANA1AY05E3jOghiQymrm4sm8RCrTC7Y",
+                "name": "Install and configure VAC Management Agent",
+                "title": "Install and configure VAC Management Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install and configure VAC Management Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command msiexec.exe \\/qn \\/i \\\"C:\\\\opt\\\\agentlite\\\\VAC.msi\\\" ACCEPT_THIRDPARTY_LICENSES=\\\"1\\\" ACCEPT_EULA=\\\"1\\\" VAC_TENANT=\\\"CCS_LAB\\\\ccs.admin\\\" VAC_TENANT_PASSWORD=\\\"CCSl4bVCSP2020!\\\" CC_GATEWAY=\\\"CGW001.MULTICLOUDSERVICES.IT\\\" CC_GATEWAY_PORT=\\\"6180\\\"",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "target_groups": {
+    "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I": {
+      "unique_name": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I",
+      "name": "CCS Target Group",
+      "title": "CCS Target Group",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "ccsuite.endpoint",
+          "view_target_type": "ccsuite.endpoint",
+          "include_all_targets": true
+        },
+        {
+          "data_target_type": "ccsuite.integration_endpoint",
+          "view_target_type": "ccsuite.integration_endpoint",
+          "include_all_targets": true
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+  ]
+}
