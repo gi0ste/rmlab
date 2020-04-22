@@ -38,13 +38,100 @@
           "body": "grant_type=password\u0026username=CCS_LAB\\ccs.admin\u0026password=CCSl4bVCSP2020!",
           "content_type": "application/json",
           "continue_on_error_status_code": false,
-          "continue_on_failure": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Bearer",
+              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOiIxNTg3NTY4NTc5IiwiZXhwIjoiMTU4NzU3MjE3OSIsInN1YiI6IjYwNTVmMzM1LTFjNzAtNGQ3NS1hZDJiLWRiODFhZjgwNmEwMiIsImp0aSI6ImM0MzYzYTFkLTZjZjktNGNlMS1iZDlmLTg5YWY1ODIyMmIzOSIsIm5hbWUiOiJjY3MuYWRtaW4iLCJsaWQiOiIxOSIsInVpZCI6IjM1IiwidHMiOiJjMjFhZjI4YS01YjE2LTQxYzUtOWIwYy0yZDcyZDkwN2Q1YTciLCJzY29wZSI6IjIiLCJraW5kIjoiMyJ9.oBwgueVVPv0lbf23igbWW2K39oHeLMpAFY1dEum7VorO1xrdFue9if3EOQIhK-biwYkuxkd9xnuiCV_IxicZlQKm8I4X8FVdeOCvmBwh6xF5Jx9_au7_gHzGbMmMhAsd4ns5kZp0MG0mM-yZOJngZB8OhIEKyAPAk7_1ulosLrRkrsRTyW_N0GO_MS2EE9jeX6WJSlTvCiqp2PWopfVBnB0-WGgawJ7VHgenxWXXkSWvqLFEpxxXBQVpy4dpP3_OECquJ4KYunNmWSa8anG3N4vc_lr67RFWArop1GEHpgq_tMUIv6VDd1lDGIkAYMkDU2xnJCO0b8ZljcXDbjU7sw"
+            }
+          ],
           "display_name": "VAC Authentication",
           "method": "POST",
           "relative_url": "api/v3/token",
           "runtime_user": {
             "override_target_runtime_user": true,
             "runtime_user_id": "definition_runtime_user_01FAWG45O37NX51Bb3zyK6jV4PS94BEpx1u"
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01FAYKRSPAPBJ3E3XAMFzwNOzB837FkYU3a",
+        "name": "Condition Block",
+        "title": "Authentication",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Authentication",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01FAYKRUZFT066q7aPS8kbhZMvDyFWkIQl0",
+            "name": "Condition Branch",
+            "title": "Authentication Failed",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "description": "execute token refresh",
+              "display_name": "Authentication Failed",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01FAYKRVVDRJT0lPLxqFSV5nmrbvFbJr7Az",
+            "name": "Condition Branch",
+            "title": "Authentication Suceeded",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "description": "do nothing",
+              "display_name": "Authentication Suceeded",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z",
+        "name": "HTTP Request",
+        "title": "Get Backup Agents",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get Backup Agents",
+          "method": "GET",
+          "relative_url": "/api/v3/infrastructure/backupAgents/?limit=100\u0026offset=0",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
           },
           "skip_execution": false,
           "target": {
