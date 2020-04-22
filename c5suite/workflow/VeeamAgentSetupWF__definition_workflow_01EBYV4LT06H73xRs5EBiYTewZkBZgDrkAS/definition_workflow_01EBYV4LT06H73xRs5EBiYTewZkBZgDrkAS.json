@@ -525,8 +525,8 @@
             "properties": {
               "condition": {
                 "left_operand": "$activity.definition_activity_01EC0XNWPQB2L10g7p7tdSQsTCEPrtLbSja.output.jsonpath_queries.os_name$",
-                "operator": "eq",
-                "right_operand": "Microsoft Windows Server 2012 R2 Datacenter"
+                "operator": "mw",
+                "right_operand": "Microsoft Windows*"
               },
               "continue_on_failure": true,
               "display_name": "OS_NAME='Windows'",
