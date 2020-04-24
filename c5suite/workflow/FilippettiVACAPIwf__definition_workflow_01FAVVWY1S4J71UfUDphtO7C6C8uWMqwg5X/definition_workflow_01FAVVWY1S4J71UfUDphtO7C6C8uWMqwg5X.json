@@ -7,18 +7,6 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "*****",
-          "scope": "input",
-          "name": "password",
-          "type": "datatype.secure_string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
-        "object_type": "variable_workflow"
-      },
-      {
         "schema_id": "datatype.string",
         "properties": {
           "value": "DEMO Workstation Policy",
@@ -33,13 +21,50 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "cqjw-717ed66af",
+          "value": "CCS_LAB\\ccs.admin",
           "scope": "input",
-          "name": "Workstation ID",
+          "name": "username",
           "type": "datatype.string",
-          "is_required": true
+          "is_required": false
         },
-        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
+        "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "GET all backups request body",
+          "type": "datatype.string",
+          "description": "Used to save the response body when we check the backup agent has been discovered",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FCKRYK392NR44OdCr1m2s84MwLQhTvKFs",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "local",
+          "name": "BackupAgentID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "refresh_token",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FBGA7MNWLKI2cZbWpkQnLAzBdvlbjpZBg",
         "object_type": "variable_workflow"
       },
       {
@@ -60,6 +85,19 @@
         "properties": {
           "value": "",
           "scope": "local",
+          "name": "Management mode",
+          "type": "datatype.string",
+          "description": "Variable used to get and check the management mode of the workstation before to activate the backup",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
           "name": "access_token",
           "type": "datatype.string",
           "is_required": false
@@ -68,27 +106,27 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "datatype.string",
+        "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "refresh_token",
-          "type": "datatype.string",
+          "value": "*****",
+          "scope": "input",
+          "name": "password",
+          "type": "datatype.secure_string",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FBGA7MNWLKI2cZbWpkQnLAzBdvlbjpZBg",
+        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
         "object_type": "variable_workflow"
       },
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "CCS_LAB\\ccs.admin",
+          "value": "cqjw-717ed66af",
           "scope": "input",
-          "name": "username",
+          "name": "Workstation ID",
           "type": "datatype.string",
-          "is_required": false
+          "is_required": true
         },
-        "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
         "object_type": "variable_workflow"
       }
     ],
@@ -290,71 +328,203 @@
             "object_type": "definition_activity",
             "actions": [
               {
-                "unique_name": "definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z",
-                "name": "HTTP Request",
-                "title": "Get all Backup Agents",
-                "type": "web-service.http_request",
+                "unique_name": "definition_activity_01FCK5NTJBX6X0lwf96woJJYtKRXIA64cgs",
+                "name": "While Loop",
+                "title": "While LOOP to wait Backup Agent discovery ",
+                "type": "logic.while",
                 "base_type": "activity",
                 "properties": {
-                  "accept": "application/json",
-                  "action_timeout": 180,
-                  "allow_auto_redirect": true,
-                  "continue_on_error_status_code": false,
                   "continue_on_failure": false,
-                  "custom_headers": [
-                    {
-                      "name": "Authorization",
-                      "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
-                    }
-                  ],
-                  "display_name": "Get all Backup Agents",
-                  "method": "GET",
-                  "relative_url": "api/v3/infrastructure/backupAgents",
-                  "runtime_user": {
-                    "override_target_runtime_user": false,
-                    "target_default": true
-                  },
-                  "skip_execution": false,
-                  "target": {
-                    "override_workflow_target": false,
-                    "override_workflow_target_group_criteria": false,
-                    "use_workflow_target": true,
-                    "use_workflow_target_group": false
-                  }
-                },
-                "object_type": "definition_activity"
-              },
-              {
-                "unique_name": "definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw",
-                "name": "JSONPath Query",
-                "title": "Get Backup Agent detail",
-                "type": "corejava.jsonpathquery",
-                "base_type": "activity",
-                "properties": {
-                  "action_timeout": 180,
-                  "continue_on_failure": false,
-                  "display_name": "Get Backup Agent detail",
-                  "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$",
-                  "jsonpath_queries": [
-                    {
-                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].instanceUid",
-                      "jsonpath_query_name": "BackupAgentID",
-                      "jsonpath_query_type": "string"
-                    },
-                    {
-                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].managementMode",
-                      "jsonpath_query_name": "ManagementMode",
-                      "jsonpath_query_type": "string"
-                    },
-                    {
-                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].operationMode",
-                      "jsonpath_query_name": "operationMode",
-                      "jsonpath_query_type": "string"
-                    }
-                  ],
+                  "display_name": "While LOOP to wait Backup Agent discovery ",
                   "skip_execution": false
                 },
-                "object_type": "definition_activity"
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01FCK5NWGPH4B3lj9Js5uTOYCsO4vUcPfGw",
+                    "name": "Condition Branch",
+                    "title": "Check if backup agents ID exist",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$",
+                        "operator": "eq",
+                        "right_operand": "null"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Check if backup agents ID exist",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z",
+                        "name": "HTTP Request",
+                        "title": "Get all Backup Agents",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "accept": "application/json",
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "Authorization",
+                              "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                            }
+                          ],
+                          "display_name": "Get all Backup Agents",
+                          "method": "GET",
+                          "relative_url": "api/v3/infrastructure/backupAgents",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01FCKE1JVHETR6nXEnthSSZtV6wZOeU2Ieq",
+                        "name": "Condition Block",
+                        "title": "HAS the backup agent been discovered?",
+                        "type": "logic.if_else",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "HAS the backup agent been discovered?",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_01FCKE1M3YMR42oPl3q846U4PZG43n8mnGH",
+                            "name": "Condition Branch",
+                            "title": "No Workstation ID found",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$",
+                                "operator": "nmw",
+                                "right_operand": "*$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$*"
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "No Workstation ID found",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01FCKJ9FSVL032z2DJwAGgVBwxVELvVkMiI",
+                                "name": "Sleep",
+                                "title": "Sleep",
+                                "type": "core.sleep",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Sleep",
+                                  "skip_execution": false,
+                                  "sleep_interval": 100
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          },
+                          {
+                            "unique_name": "definition_activity_01FCKE1MZUF3P3luX82NYthZgglwLvhBSDA",
+                            "name": "Condition Branch",
+                            "title": "Workstation ID found",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$",
+                                "operator": "mw",
+                                "right_operand": "*$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$*"
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "Workstation ID found",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw",
+                                "name": "JSONPath Query",
+                                "title": "Get Backup Agent detail",
+                                "type": "corejava.jsonpathquery",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "continue_on_failure": false,
+                                  "display_name": "Get Backup Agent detail",
+                                  "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCKRYK392NR44OdCr1m2s84MwLQhTvKFs$",
+                                  "jsonpath_queries": [
+                                    {
+                                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].instanceUid",
+                                      "jsonpath_query_name": "BackupAgentID",
+                                      "jsonpath_query_type": "string"
+                                    },
+                                    {
+                                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].managementMode",
+                                      "jsonpath_query_name": "ManagementMode",
+                                      "jsonpath_query_type": "string"
+                                    },
+                                    {
+                                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].operationMode",
+                                      "jsonpath_query_name": "operationMode",
+                                      "jsonpath_query_type": "string"
+                                    }
+                                  ],
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FCKNIL3HAZ36UHzn0Lf0Bx5VnqRHXnqbD",
+                                "name": "Set Variables",
+                                "title": "Set up variables",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "description": "Set up variables that are going to be used for outside the loop",
+                                  "display_name": "Set up variables",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$",
+                                      "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$"
+                                    },
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ$",
+                                      "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.ManagementMode$"
+                                    },
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
+                                      "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.operationMode$"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "unique_name": "definition_activity_01FC8VBSSU00X5mCuYAleKYt0ZeJYhzJd0L",
@@ -434,7 +604,7 @@
                     "base_type": "activity",
                     "properties": {
                       "condition": {
-                        "left_operand": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.ManagementMode$",
+                        "left_operand": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ$",
                         "operator": "eq",
                         "right_operand": "Managed"
                       },
@@ -452,7 +622,7 @@
                     "base_type": "activity",
                     "properties": {
                       "condition": {
-                        "left_operand": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.ManagementMode$",
+                        "left_operand": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ$",
                         "operator": "eq",
                         "right_operand": "unManaged"
                       },
@@ -482,7 +652,7 @@
                           "description": "Activate the Backup Agent installing the key",
                           "display_name": "Activate Backup Agent ",
                           "method": "POST",
-                          "relative_url": "api/v3/infrastructure/backupAgents/$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$/activate",
+                          "relative_url": "api/v3/infrastructure/backupAgents/$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$/activate",
                           "runtime_user": {
                             "override_target_runtime_user": false,
                             "target_default": true
@@ -494,26 +664,6 @@
                             "use_workflow_target": true,
                             "use_workflow_target_group": false
                           }
-                        },
-                        "object_type": "definition_activity"
-                      },
-                      {
-                        "unique_name": "definition_activity_01FCAO45RG95C21O9tfneTcBMJchxAkn4tL",
-                        "name": "Set Variables",
-                        "title": "Set Operation Mode Variable",
-                        "type": "core.set_multiple_variables",
-                        "base_type": "activity",
-                        "properties": {
-                          "continue_on_failure": false,
-                          "description": "Used to check if the activation is successfull",
-                          "display_name": "Set Operation Mode Variable",
-                          "skip_execution": false,
-                          "variables_to_update": [
-                            {
-                              "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
-                              "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.operationMode$"
-                            }
-                          ]
                         },
                         "object_type": "definition_activity"
                       },
@@ -569,7 +719,7 @@
                                   ],
                                   "display_name": "Get Backup Agent info",
                                   "method": "GET",
-                                  "relative_url": "api/v3/infrastructure/backupAgents/$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$",
+                                  "relative_url": "api/v3/infrastructure/backupAgents/$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$",
                                   "runtime_user": {
                                     "override_target_runtime_user": false,
                                     "target_default": true
@@ -635,7 +785,7 @@
                                   "continue_on_failure": false,
                                   "display_name": "Sleep",
                                   "skip_execution": false,
-                                  "sleep_interval": 100
+                                  "sleep_interval": 40
                                 },
                                 "object_type": "definition_activity"
                               }
@@ -662,7 +812,7 @@
                           ],
                           "display_name": "Assign Policy to VM",
                           "method": "POST",
-                          "relative_url": "api/v3/infrastructure/backupAgents/windows/$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$/assignedPolicies?policyUid=$activity.definition_activity_01FC92IAO5N5V3pCuXP8sV4PUbZIkFfiBgy.output.jsonpath_queries.Backup Policy ID$",
+                          "relative_url": "api/v3/infrastructure/backupAgents/windows/$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$/assignedPolicies?policyUid=$activity.definition_activity_01FC92IAO5N5V3pCuXP8sV4PUbZIkFfiBgy.output.jsonpath_queries.Backup Policy ID$",
                           "runtime_user": {
                             "override_target_runtime_user": false,
                             "target_default": true
