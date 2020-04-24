@@ -1,18 +1,104 @@
 {
   "workflow": {
     "unique_name": "definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X",
-    "name": "Filippetti VAC API integration",
-    "title": "Filippetti VAC API integration",
+    "name": "Veeam VAC Backup Agent Management",
+    "title": "Veeam VAC Backup Agent Management",
     "type": "generic.workflow",
     "base_type": "workflow",
-    "variables": null,
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "password",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "DEMO Workstation Policy",
+          "scope": "input",
+          "name": "Backup Policy",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "cqjw-717ed66af",
+          "scope": "input",
+          "name": "Workstation ID",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Operation Mode",
+          "type": "datatype.string",
+          "description": "Contain the Operational status of the VM [Licensed/unLicensed]",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "access_token",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "refresh_token",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FBGA7MNWLKI2cZbWpkQnLAzBdvlbjpZBg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "CCS_LAB\\ccs.admin",
+          "scope": "input",
+          "name": "username",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+        "object_type": "variable_workflow"
+      }
+    ],
     "properties": {
       "atomic": {
         "is_atomic": false
       },
       "delete_workflow_instance": false,
-      "description": "test the implementation of the Veeam API calls",
-      "display_name": "Filippetti VAC API integration",
+      "description": "Manages the configuration of the backup agent using the Veeam VSPC (aka VAC) API",
+      "display_name": "Veeam VAC Backup Agent Management",
       "runtime_user": {
         "override_target_runtime_user": false,
         "specify_on_workflow_start": false,
@@ -27,30 +113,29 @@
     "object_type": "definition_workflow",
     "actions": [
       {
-        "unique_name": "definition_activity_01FAW9DY7W9MW7VrJLJp8vmTEQFWkg3ANRB",
+        "unique_name": "definition_activity_01FBP4PTRX9OE1aeMXKiN4VFx8maRrgDbhn",
         "name": "HTTP Request",
-        "title": "VAC Authentication",
+        "title": "VAC Authentication OAuth 2.0",
         "type": "web-service.http_request",
         "base_type": "activity",
         "properties": {
+          "accept": "application/json",
           "action_timeout": 180,
           "allow_auto_redirect": true,
-          "body": "grant_type=password\u0026username=CCS_LAB\\ccs.admin\u0026password=CCSl4bVCSP2020!",
-          "content_type": "application/json",
+          "body": "grant_type=password\u0026username=$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF$\u0026password=$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj$",
           "continue_on_error_status_code": false,
-          "continue_on_failure": true,
+          "continue_on_failure": false,
           "custom_headers": [
             {
-              "name": "Bearer",
-              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOiIxNTg3NTY4NTc5IiwiZXhwIjoiMTU4NzU3MjE3OSIsInN1YiI6IjYwNTVmMzM1LTFjNzAtNGQ3NS1hZDJiLWRiODFhZjgwNmEwMiIsImp0aSI6ImM0MzYzYTFkLTZjZjktNGNlMS1iZDlmLTg5YWY1ODIyMmIzOSIsIm5hbWUiOiJjY3MuYWRtaW4iLCJsaWQiOiIxOSIsInVpZCI6IjM1IiwidHMiOiJjMjFhZjI4YS01YjE2LTQxYzUtOWIwYy0yZDcyZDkwN2Q1YTciLCJzY29wZSI6IjIiLCJraW5kIjoiMyJ9.oBwgueVVPv0lbf23igbWW2K39oHeLMpAFY1dEum7VorO1xrdFue9if3EOQIhK-biwYkuxkd9xnuiCV_IxicZlQKm8I4X8FVdeOCvmBwh6xF5Jx9_au7_gHzGbMmMhAsd4ns5kZp0MG0mM-yZOJngZB8OhIEKyAPAk7_1ulosLrRkrsRTyW_N0GO_MS2EE9jeX6WJSlTvCiqp2PWopfVBnB0-WGgawJ7VHgenxWXXkSWvqLFEpxxXBQVpy4dpP3_OECquJ4KYunNmWSa8anG3N4vc_lr67RFWArop1GEHpgq_tMUIv6VDd1lDGIkAYMkDU2xnJCO0b8ZljcXDbjU7sw"
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
             }
           ],
-          "display_name": "VAC Authentication",
+          "display_name": "VAC Authentication OAuth 2.0",
           "method": "POST",
           "relative_url": "api/v3/token",
           "runtime_user": {
-            "override_target_runtime_user": true,
-            "runtime_user_id": "definition_runtime_user_01FAWG45O37NX51Bb3zyK6jV4PS94BEpx1u"
+            "target_default": true
           },
           "skip_execution": false,
           "target": {
@@ -63,14 +148,41 @@
         "object_type": "definition_activity"
       },
       {
+        "unique_name": "definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz",
+        "name": "JSONPath Query",
+        "title": "Get Authorization Token ",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get Authorization Token ",
+          "input_json": "$activity.definition_activity_01FBP4PTRX9OE1aeMXKiN4VFx8maRrgDbhn.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.access_token",
+              "jsonpath_query_name": "access_token",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$.refresh_token",
+              "jsonpath_query_name": "refresh_token",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
         "unique_name": "definition_activity_01FAYKRSPAPBJ3E3XAMFzwNOzB837FkYU3a",
         "name": "Condition Block",
-        "title": "Authentication",
+        "title": "Authentication Check",
         "type": "logic.if_else",
         "base_type": "activity",
         "properties": {
           "continue_on_failure": false,
-          "display_name": "Authentication",
+          "display_name": "Authentication Check",
           "skip_execution": false
         },
         "object_type": "definition_activity",
@@ -83,65 +195,495 @@
             "base_type": "activity",
             "properties": {
               "condition": {
-                "left_operand": "",
-                "operator": "eq",
-                "right_operand": ""
+                "left_operand": "$activity.definition_activity_01FBP4PTRX9OE1aeMXKiN4VFx8maRrgDbhn.output.response_body$",
+                "operator": "nmw",
+                "right_operand": "*access_token*"
               },
               "continue_on_failure": true,
               "description": "execute token refresh",
               "display_name": "Authentication Failed",
               "skip_execution": false
             },
-            "object_type": "definition_activity"
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01FCHGDQ518JG7fYn0tk1Vuob458W2HLOe4",
+                "name": "HTTP Request",
+                "title": "VAC OAuth 2.0 - Refresh Token",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "grant_type=refresh_token\u0026refresh_token=$activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.refresh_token$",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Content-Type",
+                      "value": "application/x-www-form-urlencoded"
+                    }
+                  ],
+                  "display_name": "VAC OAuth 2.0 - Refresh Token",
+                  "method": "POST",
+                  "relative_url": "api/v3/token",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FCHTJS0IA6V0iXQY9CSKWS8gXNCtPOCbw",
+                "name": "JSONPath Query",
+                "title": "Get Authorization Token ",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Authorization Token ",
+                  "input_json": "$activity.definition_activity_01FCHGDQ518JG7fYn0tk1Vuob458W2HLOe4.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.access_token",
+                      "jsonpath_query_name": "access_token",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.refresh_token",
+                      "jsonpath_query_name": "refresh_token",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
           },
           {
-            "unique_name": "definition_activity_01FAYKRVVDRJT0lPLxqFSV5nmrbvFbJr7Az",
+            "unique_name": "definition_activity_01FAYW2ZKRIE31uCjQrYGE1d3t7V7SOSJSn",
             "name": "Condition Branch",
             "title": "Authentication Suceeded",
             "type": "logic.condition_block",
             "base_type": "activity",
             "properties": {
               "condition": {
-                "left_operand": "",
-                "operator": "eq",
-                "right_operand": ""
+                "left_operand": "$activity.definition_activity_01FBP4PTRX9OE1aeMXKiN4VFx8maRrgDbhn.output.response_body$",
+                "operator": "mw",
+                "right_operand": "*access_token*"
               },
-              "continue_on_failure": false,
+              "continue_on_failure": true,
               "description": "do nothing",
               "display_name": "Authentication Suceeded",
               "skip_execution": false
             },
-            "object_type": "definition_activity"
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z",
+                "name": "HTTP Request",
+                "title": "Get all Backup Agents",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                    }
+                  ],
+                  "display_name": "Get all Backup Agents",
+                  "method": "GET",
+                  "relative_url": "api/v3/infrastructure/backupAgents",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw",
+                "name": "JSONPath Query",
+                "title": "Get Backup Agent detail",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Backup Agent detail",
+                  "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].instanceUid",
+                      "jsonpath_query_name": "BackupAgentID",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].managementMode",
+                      "jsonpath_query_name": "ManagementMode",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].operationMode",
+                      "jsonpath_query_name": "operationMode",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FC8VBSSU00X5mCuYAleKYt0ZeJYhzJd0L",
+                "name": "HTTP Request",
+                "title": "Get Available Backup Policies",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                    }
+                  ],
+                  "display_name": "Get Available Backup Policies",
+                  "method": "GET",
+                  "relative_url": "api/v3/configuration/backupPolicies",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FC92IAO5N5V3pCuXP8sV4PUbZIkFfiBgy",
+                "name": "JSONPath Query",
+                "title": "Get Backup Policy ID",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Backup Policy ID",
+                  "input_json": "$activity.definition_activity_01FC8VBSSU00X5mCuYAleKYt0ZeJYhzJd0L.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU$\")].instanceUid",
+                      "jsonpath_query_name": "Backup Policy ID",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FC9KNBXJ6Z03HXBD0U9qqJDSkuryF7tE9",
+                "name": "Condition Block",
+                "title": "Check Backup Agent Operation mode",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check Backup Agent Operation mode",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01FC9KNED781E3Rv6OzFQutem6ukk2anUOy",
+                    "name": "Condition Branch",
+                    "title": "VM == Managed mode",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.ManagementMode$",
+                        "operator": "eq",
+                        "right_operand": "Managed"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "VM == Managed mode",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01FC9KNFCYKYR0jWQu4j3FuuPUU1DMVsYg6",
+                    "name": "Condition Branch",
+                    "title": "VM == Unmanaged mode",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.ManagementMode$",
+                        "operator": "eq",
+                        "right_operand": "unManaged"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "VM == Unmanaged mode",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01FC9X3HMOLHP5KPNfocI75k0E8dtuHpHUR",
+                        "name": "HTTP Request",
+                        "title": "Activate Backup Agent ",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "Authorization",
+                              "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                            }
+                          ],
+                          "description": "Activate the Backup Agent installing the key",
+                          "display_name": "Activate Backup Agent ",
+                          "method": "POST",
+                          "relative_url": "api/v3/infrastructure/backupAgents/$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$/activate",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01FCAO45RG95C21O9tfneTcBMJchxAkn4tL",
+                        "name": "Set Variables",
+                        "title": "Set Operation Mode Variable",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Used to check if the activation is successfull",
+                          "display_name": "Set Operation Mode Variable",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
+                              "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.operationMode$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01FCAPELN0MYE2NHteePoyIdRbjQGe4KgQ2",
+                        "name": "While Loop",
+                        "title": "Wait VM moves to Managed Mode",
+                        "type": "logic.while",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Wait the activation process in order to get the VM in Managed mode ends.",
+                          "display_name": "Wait VM moves to Managed Mode",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_01FCAPEO6CKL37CTeW9sd5wBQrQNMJBtieI",
+                            "name": "Condition Branch",
+                            "title": "Check Operation mode status",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
+                                "operator": "eq",
+                                "right_operand": "unLicensed"
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "Check Operation mode status",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01FCAY8RDQAHA2Ahb1Dd805GAlWHeWaGSma",
+                                "name": "HTTP Request",
+                                "title": "Get Backup Agent info",
+                                "type": "web-service.http_request",
+                                "base_type": "activity",
+                                "properties": {
+                                  "accept": "application/json",
+                                  "action_timeout": 180,
+                                  "allow_auto_redirect": true,
+                                  "continue_on_error_status_code": false,
+                                  "continue_on_failure": false,
+                                  "custom_headers": [
+                                    {
+                                      "name": "Authorization",
+                                      "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                                    }
+                                  ],
+                                  "display_name": "Get Backup Agent info",
+                                  "method": "GET",
+                                  "relative_url": "api/v3/infrastructure/backupAgents/$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$",
+                                  "runtime_user": {
+                                    "override_target_runtime_user": false,
+                                    "target_default": true
+                                  },
+                                  "skip_execution": false,
+                                  "target": {
+                                    "override_workflow_target": false,
+                                    "override_workflow_target_group_criteria": false,
+                                    "use_workflow_target": true,
+                                    "use_workflow_target_group": false
+                                  }
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FCB1RURSEKO27Qd7BbWiRgmaN8QDl77LX",
+                                "name": "JSONPath Query",
+                                "title": "Get Operation mode status",
+                                "type": "corejava.jsonpathquery",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "continue_on_failure": false,
+                                  "display_name": "Get Operation mode status",
+                                  "input_json": "$activity.definition_activity_01FCAY8RDQAHA2Ahb1Dd805GAlWHeWaGSma.output.response_body$",
+                                  "jsonpath_queries": [
+                                    {
+                                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].operationMode",
+                                      "jsonpath_query_name": "OperationStatusUpdate",
+                                      "jsonpath_query_type": "string"
+                                    }
+                                  ],
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FCB49PDX8Z10l9t9gXVM1KdGRppap4qae",
+                                "name": "Set Variables",
+                                "title": "Update Operation Mode Variable",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Update Operation Mode Variable",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
+                                      "variable_value_new": "$activity.definition_activity_01FCB1RURSEKO27Qd7BbWiRgmaN8QDl77LX.output.jsonpath_queries.OperationStatusUpdate$"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FCC2TZMSI8S0AUfXR4Kw6CKIJLrOmrdYL",
+                                "name": "Sleep",
+                                "title": "Sleep",
+                                "type": "core.sleep",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Sleep",
+                                  "skip_execution": false,
+                                  "sleep_interval": 100
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_01FCA55Q03ZPQ4W724xs95pGei9X2I9Tljc",
+                        "name": "HTTP Request",
+                        "title": "Assign Policy to VM",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "Authorization",
+                              "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                            }
+                          ],
+                          "display_name": "Assign Policy to VM",
+                          "method": "POST",
+                          "relative_url": "api/v3/infrastructure/backupAgents/windows/$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$/assignedPolicies?policyUid=$activity.definition_activity_01FC92IAO5N5V3pCuXP8sV4PUbZIkFfiBgy.output.jsonpath_queries.Backup Policy ID$",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
-      },
-      {
-        "unique_name": "definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z",
-        "name": "HTTP Request",
-        "title": "Get Backup Agents",
-        "type": "web-service.http_request",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "allow_auto_redirect": true,
-          "continue_on_error_status_code": false,
-          "continue_on_failure": false,
-          "display_name": "Get Backup Agents",
-          "method": "GET",
-          "relative_url": "/api/v3/infrastructure/backupAgents/?limit=100\u0026offset=0",
-          "runtime_user": {
-            "override_target_runtime_user": false,
-            "target_default": true
-          },
-          "skip_execution": false,
-          "target": {
-            "override_workflow_target": false,
-            "override_workflow_target_group_criteria": false,
-            "use_workflow_target": true,
-            "use_workflow_target_group": false
-          }
-        },
-        "object_type": "definition_activity"
       }
     ],
     "categories": [
@@ -163,22 +705,6 @@
         "no_runtime_user": true,
         "port": 1280,
         "protocol": "https"
-      }
-    }
-  },
-  "runtime_users": {
-    "definition_runtime_user_01FAWG45O37NX51Bb3zyK6jV4PS94BEpx1u": {
-      "unique_name": "definition_runtime_user_01FAWG45O37NX51Bb3zyK6jV4PS94BEpx1u",
-      "name": "VAC Credentials",
-      "title": "VAC Credentials",
-      "type": "runtime_user.web-service_basic_credentials",
-      "base_type": "runtime_user",
-      "object_type": "definition_runtime_user",
-      "properties": {
-        "auth_option": "*****",
-        "basic_password": "*****",
-        "basic_username": "*****",
-        "display_name": "VAC Credentials"
       }
     }
   }
