@@ -595,6 +595,66 @@
                 "object_type": "definition_activity"
               },
               {
+                "unique_name": "definition_activity_01F8ANA1AY05E3jOghiQymrm4sm8RCrTC7Y",
+                "name": "Install and configure VAC Management Agent",
+                "title": "Install and configure VAC Management Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install and configure VAC Management Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command msiexec.exe \\/qn \\/i \\\"C:\\\\opt\\\\agentlite\\\\VAC.msi\\\" ACCEPT_THIRDPARTY_LICENSES=\\\"1\\\" ACCEPT_EULA=\\\"1\\\" VAC_TENANT=\\\"CCS_LAB\\\\ccs.admin\\\" VAC_TENANT_PASSWORD=\\\"CCSl4bVCSP2020!\\\" CC_GATEWAY=\\\"CGW001.MULTICLOUDSERVICES.IT\\\" CC_GATEWAY_PORT=\\\"6180\\\"",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01EGTKV7GEGJB1hgMV1ZfasRQHD9EVAZXmZ",
+                "name": "Install Backup Agent",
+                "title": "Install Backup Agent",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install Backup Agent",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command \\\"C:\\\\opt\\\\agentlite\\\\BackupAgent.exe \\/silent \\/accepteula \\/acceptthirdpartylicenses\\\"",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
                 "unique_name": "definition_activity_01F8AEG417AWD2GElmj0FSRLRs0C5KJ6s7F",
                 "name": "Download Veeam license file",
                 "title": "Download Veeam license file",
@@ -655,21 +715,21 @@
                 "object_type": "definition_activity"
               },
               {
-                "unique_name": "definition_activity_01EGTKV7GEGJB1hgMV1ZfasRQHD9EVAZXmZ",
-                "name": "Installing Backup Agent",
-                "title": "Installing Backup Agent",
+                "unique_name": "definition_activity_01F8AKK7WQ6TT0ss1duGIQBq4pxTdsQkcpM",
+                "name": "Install License File",
+                "title": "Install License File",
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
                   "continue_on_failure": true,
-                  "display_name": "Installing Backup Agent",
+                  "display_name": "Install License File",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
                     "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command \\\"C:\\\\opt\\\\agentlite\\\\BackupAgent.exe \\/silent \\/accepteula \\/acceptthirdpartylicenses\\\"",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "\\\"\"C:\\Program Files\\Veeam\\Endpoint Backup\\veeam.agent.configurator.exe\" -license /f:\"C:\\opt\\agentlite\\license.lic\\\" /w\\\"",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -685,7 +745,7 @@
                 "object_type": "definition_activity"
               },
               {
-                "unique_name": "definition_activity_01F8AKK7WQ6TT0ss1duGIQBq4pxTdsQkcpM",
+                "unique_name": "definition_activity_01FCMQE069JWL6uoQ72V9uFRRrrYLtHsjWl",
                 "name": "Install License File",
                 "title": "Install License File",
                 "type": "workflow.atomic_workflow",
@@ -699,7 +759,97 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command \"C:\\Program Files\\Veeam\\Endpoint Backup\\veeam.agent.configurator.exe\" -license /f:\"C:\\opt\\agentlite\\license.lic\\\" /w",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FCMJXF9YKBT62QKal4jXv7Uf3QT8qIvL3",
+                "name": "Download license install script",
+                "title": "Download license install script",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Download license install script",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl https://pvt2020.s3-eu-west-1.amazonaws.com/AO/installLicense.cmd -o license.cmd",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FCMJA73B0MX13ShWyTgZrxkmi9ErW0zA3",
+                "name": "Install License File from script",
+                "title": "Install License File from script",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install License File from script",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "cmd license.cmd",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FCMPDB8AFCJ2kMbNBhqkduosO4CasjQn7",
+                "name": "Install License File from script",
+                "title": "Install License File from script",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Install License File from script",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command license.cmd",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -729,37 +879,7 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "",
-                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
-                  },
-                  "runtime_user": {
-                    "target_default": true
-                  },
-                  "skip_execution": false,
-                  "target": {
-                    "execute_on_this_target_group": true,
-                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
-                  },
-                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
-                },
-                "object_type": "definition_activity"
-              },
-              {
-                "unique_name": "definition_activity_01F8ANA1AY05E3jOghiQymrm4sm8RCrTC7Y",
-                "name": "Install and configure VAC Management Agent",
-                "title": "Install and configure VAC Management Agent",
-                "type": "workflow.atomic_workflow",
-                "base_type": "subworkflow",
-                "properties": {
-                  "continue_on_failure": true,
-                  "display_name": "Install and configure VAC Management Agent",
-                  "input": {
-                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
-                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
-                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
-                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
-                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "powershell -command msiexec.exe \\/qn \\/i \\\"C:\\\\opt\\\\agentlite\\\\VAC.msi\\\" ACCEPT_THIRDPARTY_LICENSES=\\\"1\\\" ACCEPT_EULA=\\\"1\\\" VAC_TENANT=\\\"CCS_LAB\\\\ccs.admin\\\" VAC_TENANT_PASSWORD=\\\"CCSl4bVCSP2020!\\\" CC_GATEWAY=\\\"CGW001.MULTICLOUDSERVICES.IT\\\" CC_GATEWAY_PORT=\\\"6180\\\"",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "\"\\\"C:\\Program Files\\Veeam\\Endpoint Backup\\veeam.agent.configurator.exe\\\" -license /f:\\\"C:\\opt\\agentlite\\license.lic\\\" /w\"",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
