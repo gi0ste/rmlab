@@ -9,6 +9,71 @@
       {
         "schema_id": "datatype.string",
         "properties": {
+          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeamsnap_4.0.0.1961_all.deb",
+          "scope": "local",
+          "name": "veeamsnap deb repo",
+          "type": "datatype.string",
+          "description": "Link to the repository to download veeamsnap deb files. ",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8C89PDOZX1C7g8n1vpYwRYYwbsWWHZU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeam_4.0.0.1961_amd64.deb",
+          "scope": "local",
+          "name": "veeam deb repo",
+          "type": "datatype.string",
+          "description": "Link to the repository to download veeam deb files. ",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8DA7T65ZW7WIYuse4hxIvEo7W1eBbVu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "https://andreaveeam.s3-eu-west-1.amazonaws.com/Veeam-1000instances-backup-trial.lic",
+          "scope": "local",
+          "name": "veeam license repo",
+          "type": "datatype.string",
+          "description": "Link to the repository to download veeam license file",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8GNA9CVX91mSDGrgVKESLg0fmutY9yz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "cgw001.multicloudservices.it",
+          "scope": "local",
+          "name": "cloud gateway",
+          "type": "datatype.string",
+          "description": "DNS name or IP address of the gateway",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8M27ANPXR53yciYZmqVsbuTp3ngC3Tq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "[CGW001.MULTICLOUDSERVICES.IT][ccs.admin]VCSP CCS LAB - Repo01",
+          "scope": "local",
+          "name": "backup repository",
+          "type": "datatype.string",
+          "description": "Cloud repository used for the backup",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8RKLEQJJ50Ph2Xx0P9tSjNeRjrmOVCF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
           "value": "",
           "scope": "input",
           "name": "CC_RUN_ID",
@@ -275,32 +340,44 @@
             "object_type": "definition_activity",
             "actions": [
               {
-                "unique_name": "definition_activity_01EC12FY27XIY18jA4V2AKLh1KMYZlZffnk",
-                "name": "Install required tools",
-                "title": "Install required tools",
-                "type": "workflow.atomic_workflow",
-                "base_type": "subworkflow",
+                "unique_name": "definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA",
+                "name": "JSONPath Query",
+                "title": "Get Workload Manager Input",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
                 "properties": {
+                  "action_timeout": 180,
                   "continue_on_failure": false,
-                  "display_name": "Install required tools",
-                  "input": {
-                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
-                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
-                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
-                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
-                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "apt-get install -y git;",
-                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
-                  },
-                  "runtime_user": {
-                    "target_default": true
-                  },
-                  "skip_execution": false,
-                  "target": {
-                    "execute_on_this_target_group": true,
-                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
-                  },
-                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                  "display_name": "Get Workload Manager Input",
+                  "input_json": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.parameters.appParams[?(@.name==\"username_backup\")].value",
+                      "jsonpath_query_name": "username",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.parameters.appParams[?(@.name==\"password_backup\")].value",
+                      "jsonpath_query_name": "password",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.parameters.appParams[?(@.name==\"backup_job_name\")].value",
+                      "jsonpath_query_name": "backup job name",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.parameters.appParams[?(@.name==\"backup_schedule\")].value",
+                      "jsonpath_query_name": "backup schedule",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.parameters.appParams[?(@.name==\"backup_schedule_time\")].value",
+                      "jsonpath_query_name": "backup schedule time",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
                 },
                 "object_type": "definition_activity"
               },
@@ -349,7 +426,37 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "git clone https://github.com/DominikGold1/veeam-release; ",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8C89PDOZX1C7g8n1vpYwRYYwbsWWHZU$ -o veeamsnap_4.0.0.1961_all.deb ; curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8DA7T65ZW7WIYuse4hxIvEo7W1eBbVu$ -o veeam_4.0.0.1961_amd64.deb;",
+                    "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target_group": true,
+                    "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                  },
+                  "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FD7XSJF0E7Y1OpZgQJwsSh7W8YK23zitK",
+                "name": "Download Veeam License",
+                "title": "Download Veeam License",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Download Veeam License",
+                  "input": {
+                    "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                    "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                    "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                    "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                    "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8GNA9CVX91mSDGrgVKESLg0fmutY9yz$ -o license.lic",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -379,7 +486,7 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "cd veeam-release; cd ubuntu; sudo dpkg -i ./veeamsnap*; sudo apt-get update; sudo dpkg -i ./veeam_*; apt-get update; apt-get -y install veeam;",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "sudo dpkg -i ./veeamsnap*; sudo apt-get update; sudo dpkg -i ./veeam_*; apt-get update; apt-get -y install veeam;",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -439,7 +546,7 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "cd veeam-release; veeamconfig license install --path Veeam-1000instances-backup-trial.lic --workstation",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig license install --path license.lic --workstation",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -469,7 +576,7 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig cloud add --address cgw001.multicloudservices.it --port 6180 --login ccs.admin --password CCSl4bVCSP2020!",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig cloud add --address $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8M27ANPXR53yciYZmqVsbuTp3ngC3Tq$ --port 6180 --login $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.username$ --password $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.password$",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -499,7 +606,7 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig job create volumelevel --name BackupVM --reponame '[CGW001.MULTICLOUDSERVICES.IT][ccs.admin]VCSP CCS LAB - Repo01' --backupallsystem",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig job create volumelevel --name $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup job name$ --reponame '$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8RKLEQJJ50Ph2Xx0P9tSjNeRjrmOVCF$' --backupallsystem",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -513,6 +620,124 @@
                   "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
                 },
                 "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01FD9EUXOEXV35d2BpUf9rKzWDXTTGUf3wt",
+                "name": "Condition Block",
+                "title": "check Scheduled Backup Type",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "description": "Check the input from workload manager to see if it is a daily or montly backup",
+                  "display_name": "check Scheduled Backup Type",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01FD9EV0I01HO1vVoI2D5ikEjOUgjgcTFqz",
+                    "name": "Condition Branch",
+                    "title": "schedule == daily",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup schedule$",
+                        "operator": "eq",
+                        "right_operand": "daily"
+                      },
+                      "continue_on_failure": false,
+                      "description": "daily schedule input in workload manager, meaning that backup will happen daily",
+                      "display_name": "schedule == daily",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01FD9CCW9AFOS7RQrOIUBXVRj4ZdRu6KrWU",
+                        "name": "Set daily schedule",
+                        "title": "Set daily schedule",
+                        "type": "workflow.atomic_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": true,
+                          "display_name": "Set daily schedule",
+                          "input": {
+                            "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                            "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                            "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                            "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                            "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig schedule set --jobName $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup job name$ --daily --at $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup schedule time$",
+                            "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "execute_on_this_target_group": true,
+                            "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                          },
+                          "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01FD9EV1E3OI01zSiBULZG4ZmmwhICMf9IW",
+                    "name": "Condition Branch",
+                    "title": "schedule == weekly",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup schedule$",
+                        "operator": "ne",
+                        "right_operand": "daily"
+                      },
+                      "continue_on_failure": false,
+                      "description": "different weekdays schedule input in workload manager, meaning that backup will happen weekly",
+                      "display_name": "schedule == weekly",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01FDBNIYVFT5E2Tk3vg10pO0gKXlxd1ypLL",
+                        "name": "Set weekly schedule",
+                        "title": "Set weekly schedule",
+                        "type": "workflow.atomic_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": true,
+                          "display_name": "Set weekly schedule",
+                          "input": {
+                            "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
+                            "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
+                            "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+                            "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+                            "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "veeamconfig schedule set --jobName $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup job name$ --weekdays $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup schedule$ --at $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.backup schedule time$",
+                            "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "execute_on_this_target_group": true,
+                            "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+                          },
+                          "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
