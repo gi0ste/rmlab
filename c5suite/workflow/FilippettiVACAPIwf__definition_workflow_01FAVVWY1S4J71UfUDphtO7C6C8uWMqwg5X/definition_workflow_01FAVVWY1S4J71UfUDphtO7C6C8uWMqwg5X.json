@@ -9,6 +9,80 @@
       {
         "schema_id": "datatype.string",
         "properties": {
+          "value": "cqjw-83d9e2cc5",
+          "scope": "input",
+          "name": "Workstation ID",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Management mode",
+          "type": "datatype.string",
+          "description": "Variable used to get and check the management mode of the workstation before to activate the backup",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Operation Mode",
+          "type": "datatype.string",
+          "description": "Contain the Operational status of the VM [Licensed/unLicensed]",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "access_token",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "password",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "CCS_LAB\\ccs.admin",
+          "scope": "input",
+          "name": "username",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
           "value": "DEMO Workstation Policy",
           "scope": "input",
           "name": "Backup Policy",
@@ -21,13 +95,26 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "CCS_LAB\\ccs.admin",
-          "scope": "input",
-          "name": "username",
+          "value": "",
+          "scope": "local",
+          "name": "refresh_token",
           "type": "datatype.string",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+        "unique_name": "variable_workflow_01FBGA7MNWLKI2cZbWpkQnLAzBdvlbjpZBg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "local",
+          "name": "Veeam_workstation_uid",
+          "type": "datatype.string",
+          "description": "uID given by Veeam to identify the workstation",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
         "object_type": "variable_workflow"
       },
       {
@@ -53,80 +140,6 @@
           "is_required": false
         },
         "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "refresh_token",
-          "type": "datatype.string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FBGA7MNWLKI2cZbWpkQnLAzBdvlbjpZBg",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "Operation Mode",
-          "type": "datatype.string",
-          "description": "Contain the Operational status of the VM [Licensed/unLicensed]",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "Management mode",
-          "type": "datatype.string",
-          "description": "Variable used to get and check the management mode of the workstation before to activate the backup",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "access_token",
-          "type": "datatype.string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "*****",
-          "scope": "input",
-          "name": "password",
-          "type": "datatype.secure_string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "cqjw-717ed66af",
-          "scope": "input",
-          "name": "Workstation ID",
-          "type": "datatype.string",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
         "object_type": "variable_workflow"
       }
     ],
@@ -328,6 +341,226 @@
             "object_type": "definition_activity",
             "actions": [
               {
+                "unique_name": "definition_activity_01FE9PMOEF4KS67e1oEAivsm3tHkrQLRdtQ",
+                "name": "While Loop",
+                "title": "While Loop to check workstation discovered",
+                "type": "logic.while",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "While Loop to check workstation discovered",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01FE9PMR3LCCA50sMxaHUL7ULywsbLH1j21",
+                    "name": "Condition Branch",
+                    "title": "Check if veeam workstation id exist",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8$",
+                        "operator": "eq",
+                        "right_operand": "null"
+                      },
+                      "continue_on_failure": false,
+                      "description": "Check if Veeam has already associated an ID to the Workstation, meaning that it has been already discovered",
+                      "display_name": "Check if veeam workstation id exist",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY",
+                        "name": "HTTP Request",
+                        "title": "Get all discovered computer",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "Authorization",
+                              "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                            }
+                          ],
+                          "display_name": "Get all discovered computer",
+                          "method": "GET",
+                          "relative_url": "api/v3/discovery/computers",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01FE9U6Y2IACB2ZcJp5tRiLcwDWtCXE9b7p",
+                        "name": "Condition Block",
+                        "title": "Has the workstation been discovered?",
+                        "type": "logic.if_else",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Check if it exists a Veeam UID for the specific workstation",
+                          "display_name": "Has the workstation been discovered?",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_01FE9U70HLLSI57weU6Jg1JOXnyBUwWU8uJ",
+                            "name": "Condition Branch",
+                            "title": "No workstation id found among discovered computers",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY.output.response_body$",
+                                "operator": "nmw",
+                                "right_operand": "*$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$*"
+                              },
+                              "continue_on_failure": false,
+                              "description": "workstation id not found the response body of previous HTTP request ",
+                              "display_name": "No workstation id found among discovered computers",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01FE9WJDIG7GN02GJcjXX82npWEgKgB6ZTa",
+                                "name": "Sleep",
+                                "title": "Sleep",
+                                "type": "core.sleep",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Sleep",
+                                  "skip_execution": false,
+                                  "sleep_interval": 10
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          },
+                          {
+                            "unique_name": "definition_activity_01FE9U71D3HEJ6wQyZE6wrczaKcDAEBBeZV",
+                            "name": "Condition Branch",
+                            "title": "workstation id found among discovered computers",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY.output.response_body$",
+                                "operator": "mw",
+                                "right_operand": "*$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$*"
+                              },
+                              "continue_on_failure": false,
+                              "description": "wokstation ID found in the response body of previous HTTP request ",
+                              "display_name": "workstation id found among discovered computers",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01FEA0OMAXZRS601d2O2mB3KJZBgjgf9J6i",
+                                "name": "JSONPath Query",
+                                "title": "Get workstation UID",
+                                "type": "corejava.jsonpathquery",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "continue_on_failure": false,
+                                  "display_name": "Get workstation UID",
+                                  "input_json": "$activity.definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY.output.response_body$",
+                                  "jsonpath_queries": [
+                                    {
+                                      "jsonpath_query": "$.data[?(@.info.hostName == \"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].instanceUid",
+                                      "jsonpath_query_name": "veeam workstation ID",
+                                      "jsonpath_query_type": "string"
+                                    }
+                                  ],
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01FEA28O5QS43751OtjSlqSs1GS31qmOBOH",
+                                "name": "Set Variables",
+                                "title": "Update veeam workstation id variable",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "description": "In order to get out of the loop",
+                                  "display_name": "Update veeam workstation id variable",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8$",
+                                      "variable_value_new": "$activity.definition_activity_01FEA0OMAXZRS601d2O2mB3KJZBgjgf9J6i.output.jsonpath_queries.veeam workstation ID$"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01FEA3L7Q70750R6pxT5ok1dDDunJxoCvba",
+                "name": "HTTP Request",
+                "title": "Install Backup Agents",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n\n \"setReadOnlyAccess\": true,\n\n \"installCbtDriver\": true\n\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                    }
+                  ],
+                  "display_name": "Install Backup Agents",
+                  "method": "POST",
+                  "relative_url": "api/v3/discovery/computers/$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8$/installBackupAgent",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
                 "unique_name": "definition_activity_01FCK5NTJBX6X0lwf96woJJYtKRXIA64cgs",
                 "name": "While Loop",
                 "title": "While LOOP to wait Backup Agent discovery ",
@@ -459,15 +692,15 @@
                             "object_type": "definition_activity",
                             "actions": [
                               {
-                                "unique_name": "definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw",
+                                "unique_name": "definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO",
                                 "name": "JSONPath Query",
-                                "title": "Get Backup Agent detail",
+                                "title": "Get Backup Agent details",
                                 "type": "corejava.jsonpathquery",
                                 "base_type": "activity",
                                 "properties": {
                                   "action_timeout": 180,
                                   "continue_on_failure": false,
-                                  "display_name": "Get Backup Agent detail",
+                                  "display_name": "Get Backup Agent details",
                                   "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCKRYK392NR44OdCr1m2s84MwLQhTvKFs$",
                                   "jsonpath_queries": [
                                     {
@@ -504,15 +737,15 @@
                                   "variables_to_update": [
                                     {
                                       "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$",
-                                      "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.BackupAgentID$"
+                                      "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.BackupAgentID$"
                                     },
                                     {
                                       "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ$",
-                                      "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.ManagementMode$"
+                                      "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.ManagementMode$"
                                     },
                                     {
                                       "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
-                                      "variable_value_new": "$activity.definition_activity_01FBQQS69W8GG3vAPQXoJOOXk2eEjSC0MUw.output.jsonpath_queries.operationMode$"
+                                      "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.operationMode$"
                                     }
                                   ]
                                 },
@@ -584,6 +817,40 @@
                 "object_type": "definition_activity"
               },
               {
+                "unique_name": "definition_activity_01FEVSTLR2TLV7Q87j0Bq4YAlqj1dn2KXWF",
+                "name": "HTTP Request",
+                "title": "Assign Policy to VM",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
+                    }
+                  ],
+                  "display_name": "Assign Policy to VM",
+                  "method": "POST",
+                  "relative_url": "api/v3/infrastructure/backupAgents/windows/$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$/assignedPolicies?policyUid=$activity.definition_activity_01FC92IAO5N5V3pCuXP8sV4PUbZIkFfiBgy.output.jsonpath_queries.Backup Policy ID$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
                 "unique_name": "definition_activity_01FC9KNBXJ6Z03HXBD0U9qqJDSkuryF7tE9",
                 "name": "Condition Block",
                 "title": "Check Backup Agent Operation mode",
@@ -592,7 +859,7 @@
                 "properties": {
                   "continue_on_failure": false,
                   "display_name": "Check Backup Agent Operation mode",
-                  "skip_execution": false
+                  "skip_execution": true
                 },
                 "object_type": "definition_activity",
                 "blocks": [
