@@ -7,29 +7,16 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "veaam_admin_password",
-          "type": "datatype.secure_string",
-          "description": "Use secure string to store veeam admin password",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FE3KV1WPU4C1tV86jxVaY6BsY3ictVsR0",
-        "object_type": "variable_workflow"
-      },
-      {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "CGW001.MULTICLOUDSERVICES.IT",
+          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/VeeamAgentWindows_4.0.0.1811.exe",
           "scope": "local",
-          "name": "Cloud Gateway - Windows",
+          "name": "backup agent installer repo",
           "type": "datatype.string",
-          "description": "Veeam Cloud gateway used in windows ",
+          "description": "Link to the backup agent installer for Windows",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FE1RVV4WNC33RquMtKgw2f1jGAyIQ0xGz",
+        "unique_name": "variable_workflow_01FE1J9D4JP8U3jsEuisehw9hPMHJQWfie0",
         "object_type": "variable_workflow"
       },
       {
@@ -48,70 +35,6 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeamsnap_4.0.0.1961_all.deb",
-          "scope": "local",
-          "name": "veeamsnap deb repo",
-          "type": "datatype.string",
-          "description": "Link to the repository to download veeamsnap deb files for Ubuntu",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FD8C89PDOZX1C7g8n1vpYwRYYwbsWWHZU",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "https://andreaveeam.s3-eu-west-1.amazonaws.com/Veeam-1000instances-backup-trial.lic",
-          "scope": "local",
-          "name": "veeam license repo",
-          "type": "datatype.string",
-          "description": "Link to the repository to download veeam license file",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FD8GNA9CVX91mSDGrgVKESLg0fmutY9yz",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeam_4.0.0.1961_amd64.deb",
-          "scope": "local",
-          "name": "veeam deb repo",
-          "type": "datatype.string",
-          "description": "Link to the repository to download veeam deb files for Ubuntu",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FD8DA7T65ZW7WIYuse4hxIvEo7W1eBbVu",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "username VAC",
-          "type": "datatype.string",
-          "description": "VAC username made of tenant/username",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FE80BA0XHLP6V2xykJF5dca0YM0WYSpYb",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "NODE_ID",
-          "type": "datatype.string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01EC0MZZWMS2J6GEpJJH2tkxwgh52Htin7t",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
           "value": "https://andreaveeam.s3-eu-west-1.amazonaws.com/VAC.CommunicationAgent.x64.msi",
           "scope": "local",
           "name": "management agent installer repo",
@@ -120,44 +43,6 @@
           "is_required": false
         },
         "unique_name": "variable_workflow_01FE1HBP7JKKF5iq57KUzeZwIg2ODVfesxm",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "[CGW001.MULTICLOUDSERVICES.IT][ccs.admin]VCSP CCS LAB - Repo01",
-          "scope": "local",
-          "name": "backup repository - Ubuntu input",
-          "type": "datatype.string",
-          "description": "Cloud repository used for the workstation backup in Ubuntu. Check the format in ubuntu before to change the input",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FD8RKLEQJJ50Ph2Xx0P9tSjNeRjrmOVCF",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/VeeamAgentWindows_4.0.0.1811.exe",
-          "scope": "local",
-          "name": "backup agent installer repo",
-          "type": "datatype.string",
-          "description": "Link to the backup agent installer for Windows",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FE1J9D4JP8U3jsEuisehw9hPMHJQWfie0",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "CC_RUN_ID",
-          "type": "datatype.string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01EBYW7LT5LQ84XPYTfBdHzxnemGsJNCh14",
         "object_type": "variable_workflow"
       },
       {
@@ -176,13 +61,14 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "function Disable-ieESC\n\n{\n$AdminKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}”\n$UserKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}”\nSet-ItemProperty -Path $AdminKey -Name “IsInstalled” -Value 0\nSet-ItemProperty -Path $UserKey -Name “IsInstalled” -Value 0\nStop-Process -Name Explorer\nWrite-Host “IE Enhanced Security Configuration (ESC) has been disabled.” -ForegroundColor Green\n}",
-          "scope": "static",
-          "name": "IES_script",
+          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeam_4.0.0.1961_amd64.deb",
+          "scope": "local",
+          "name": "veeam deb repo",
           "type": "datatype.string",
+          "description": "Link to the repository to download veeam deb files for Ubuntu",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01EED6K18TAL71jVi05dxkCMwcu41nRbFCv",
+        "unique_name": "variable_workflow_01FD8DA7T65ZW7WIYuse4hxIvEo7W1eBbVu",
         "object_type": "variable_workflow"
       },
       {
@@ -196,6 +82,120 @@
           "is_required": false
         },
         "unique_name": "variable_workflow_01FFRQ1AZ4EAM4wEb7irEkBC8h9Kj2Xzt7G",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "https://andreaveeam.s3-eu-west-1.amazonaws.com/Veeam-1000instances-backup-trial.lic",
+          "scope": "local",
+          "name": "veeam license repo",
+          "type": "datatype.string",
+          "description": "Link to the repository to download veeam license file",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8GNA9CVX91mSDGrgVKESLg0fmutY9yz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "function Disable-ieESC\n\n{\n$AdminKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}”\n$UserKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}”\nSet-ItemProperty -Path $AdminKey -Name “IsInstalled” -Value 0\nSet-ItemProperty -Path $UserKey -Name “IsInstalled” -Value 0\nStop-Process -Name Explorer\nWrite-Host “IE Enhanced Security Configuration (ESC) has been disabled.” -ForegroundColor Green\n}",
+          "scope": "static",
+          "name": "IES_script",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EED6K18TAL71jVi05dxkCMwcu41nRbFCv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "veaam_admin_password",
+          "type": "datatype.secure_string",
+          "description": "Use secure string to store veeam admin password before give it as input",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FE3KV1WPU4C1tV86jxVaY6BsY3ictVsR0",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeamsnap_4.0.0.1961_all.deb",
+          "scope": "local",
+          "name": "veeamsnap deb repo",
+          "type": "datatype.string",
+          "description": "Link to the repository to download veeamsnap deb files for Ubuntu",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8C89PDOZX1C7g8n1vpYwRYYwbsWWHZU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "[CGW001.MULTICLOUDSERVICES.IT][ccs.admin]VCSP CCS LAB - Repo01",
+          "scope": "local",
+          "name": "backup repository - Ubuntu input",
+          "type": "datatype.string",
+          "description": "Cloud repository used for the workstation backup in Ubuntu. Check the format in ubuntu before to change the input",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8RKLEQJJ50Ph2Xx0P9tSjNeRjrmOVCF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "NODE_ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EC0MZZWMS2J6GEpJJH2tkxwgh52Htin7t",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "CC_RUN_ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01EBYW7LT5LQ84XPYTfBdHzxnemGsJNCh14",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "username VAC",
+          "type": "datatype.string",
+          "description": "VAC username made of tenant/username. Used as input for the VAC APIs workflow",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FE80BA0XHLP6V2xykJF5dca0YM0WYSpYb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "CGW001.MULTICLOUDSERVICES.IT",
+          "scope": "local",
+          "name": "Cloud Gateway - Windows",
+          "type": "datatype.string",
+          "description": "Veeam Cloud gateway used in windows ",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FE1RVV4WNC33RquMtKgw2f1jGAyIQ0xGz",
         "object_type": "variable_workflow"
       }
     ],
@@ -223,7 +223,7 @@
       {
         "unique_name": "definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX",
         "name": "Get Workload Manager Context",
-        "title": "Get WorkloadM Context",
+        "title": "Get Workload Manager Context",
         "type": "ccs.get_cloud_context",
         "base_type": "activity",
         "properties": {
@@ -287,7 +287,7 @@
           },
           "cc_run_id": "$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.input.variable_workflow_01EBYW7LT5LQ84XPYTfBdHzxnemGsJNCh14$",
           "continue_on_failure": false,
-          "display_name": "Get WorkloadM Context",
+          "display_name": "Get Workload Manager Context",
           "runtime_user": {
             "override_target_runtime_user": false,
             "target_default": true
@@ -309,6 +309,7 @@
         "properties": {
           "action_timeout": 180,
           "continue_on_failure": false,
+          "description": "JsonPath query to get the details of the workload manager deployment",
           "display_name": "Get Deployment Details",
           "input_json": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
           "jsonpath_queries": [
@@ -368,6 +369,7 @@
           "api_body": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
           "api_call_method": "GET",
           "continue_on_failure": false,
+          "description": "Get the details of the VM",
           "display_name": "Get VM Details",
           "relative_url": "/cloudcenter-ccm-backend/api/v1/virtualMachines/$activity.definition_activity_01EC0P9WN8QHJ1fbzrpTXZu3nThtK3zWbcX.output.jsonpath_queries.vm_id$",
           "runtime_user": {
@@ -391,6 +393,7 @@
         "properties": {
           "action_timeout": 180,
           "continue_on_failure": false,
+          "description": "Get OS type",
           "display_name": "Get OS Type",
           "input_json": "$activity.definition_activity_01EC0VRM8TWUH0M5iZD7CopZacImqWzwJHC.output.response_body$",
           "jsonpath_queries": [
@@ -417,6 +420,7 @@
         "base_type": "activity",
         "properties": {
           "continue_on_failure": false,
+          "description": "Check the OS type",
           "display_name": "Check OS",
           "skip_execution": false
         },
@@ -435,6 +439,7 @@
                 "right_operand": "ubuntu"
               },
               "continue_on_failure": false,
+              "description": "If the OS is Ubuntu",
               "display_name": "Os_name = 'ubuntu'",
               "skip_execution": false
             },
@@ -449,6 +454,7 @@
                 "properties": {
                   "action_timeout": 180,
                   "continue_on_failure": false,
+                  "description": "Get the input given to workload manager when the 'INSERT NAME HERE' application profile is used for deployment",
                   "display_name": "Get Workload Manager Input",
                   "input_json": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
                   "jsonpath_queries": [
@@ -490,6 +496,7 @@
                 "base_type": "subworkflow",
                 "properties": {
                   "continue_on_failure": false,
+                  "description": "Install required dependencies for Veeam Agent deployment",
                   "display_name": "Install required dependencies",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -520,6 +527,7 @@
                 "base_type": "subworkflow",
                 "properties": {
                   "continue_on_failure": false,
+                  "description": "Download the Veeam Backup Agent",
                   "display_name": "Download Veeam Agent",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -550,6 +558,7 @@
                 "base_type": "subworkflow",
                 "properties": {
                   "continue_on_failure": false,
+                  "description": "Download the Veeam License",
                   "display_name": "Download Veeam License",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -580,6 +589,7 @@
                 "base_type": "subworkflow",
                 "properties": {
                   "continue_on_failure": true,
+                  "description": "Install the Veeam Agent .deb files in the VM",
                   "display_name": "Install Veeam Agent",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -609,7 +619,8 @@
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
-                  "continue_on_failure": true,
+                  "continue_on_failure": false,
+                  "description": "Automatically accept license agreements in Veeam ",
                   "display_name": "Accept Veeam Licenses",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -639,7 +650,8 @@
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
-                  "continue_on_failure": true,
+                  "continue_on_failure": false,
+                  "description": "Install Veeam license",
                   "display_name": "Install License",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -669,7 +681,8 @@
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
-                  "continue_on_failure": true,
+                  "continue_on_failure": false,
+                  "description": "Connect to the Veeam Gateway",
                   "display_name": "Connect to Filippetti Veeam Cloud",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -699,7 +712,8 @@
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
-                  "continue_on_failure": true,
+                  "continue_on_failure": false,
+                  "description": "Define a Backup Job for the VM",
                   "display_name": "Define VM Backup Job",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -725,13 +739,13 @@
               {
                 "unique_name": "definition_activity_01FD9EUXOEXV35d2BpUf9rKzWDXTTGUf3wt",
                 "name": "Condition Block",
-                "title": "check Scheduled Backup Type",
+                "title": "Check Scheduled Backup Type",
                 "type": "logic.if_else",
                 "base_type": "activity",
                 "properties": {
                   "continue_on_failure": false,
-                  "description": "Check the input from workload manager to see if it is a daily or montly backup",
-                  "display_name": "check Scheduled Backup Type",
+                  "description": "Check the input from workload manager to see if it is a daily or weekkly backup",
+                  "display_name": "Check Scheduled Backup Type",
                   "skip_execution": false
                 },
                 "object_type": "definition_activity",
@@ -762,7 +776,8 @@
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
+                          "description": "Set up daily schedule",
                           "display_name": "Set daily schedule",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -813,7 +828,8 @@
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
+                          "description": "Set up weekly schedule considering weekdays in input from workload manager",
                           "display_name": "Set weekly schedule",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -854,7 +870,7 @@
                 "operator": "mw",
                 "right_operand": "Microsoft Windows*"
               },
-              "continue_on_failure": true,
+              "continue_on_failure": false,
               "display_name": "OS_NAME='Windows'",
               "skip_execution": false
             },
@@ -869,7 +885,7 @@
                 "properties": {
                   "action_timeout": 180,
                   "continue_on_failure": false,
-                  "description": "Used to get input from Workload manager",
+                  "description": "Get the input given to workload manager when the 'INSERT NAME HERE' application profile is used for deployment",
                   "display_name": "Get Workload Manager Input",
                   "input_json": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
                   "jsonpath_queries": [
@@ -906,7 +922,7 @@
                 "base_type": "activity",
                 "properties": {
                   "continue_on_failure": false,
-                  "description": "Check if the backup is going to be managed from the VAC or if it is going to happen in unmanaged mode.",
+                  "description": "Check if the backup is going to be managed from the VAC (managed mode) or if it is going to happen in unmanaged mode.",
                   "display_name": "Check backup management mode",
                   "skip_execution": false
                 },
@@ -925,6 +941,7 @@
                         "right_operand": "null"
                       },
                       "continue_on_failure": false,
+                      "description": "If the input specify backup policy equal to null, it means that the backup is going to be configured from the command line, importing license and configuration file with existing policy and gateway configured",
                       "display_name": "is backup policy == null",
                       "skip_execution": false
                     },
@@ -937,7 +954,8 @@
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
+                          "description": "Download the Veeam Backup Agent.\ncurl must be used because is the only command that apparently bypass the Enanched Security that Windows Server OS enables by default",
                           "display_name": "Download Backup Agent",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -967,7 +985,8 @@
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
+                          "description": "Install Backup Agent from windows command line using powershell. That is because we had issue on execute this command directly from the command line.",
                           "display_name": "Install Backup Agent",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -992,13 +1011,14 @@
                       },
                       {
                         "unique_name": "definition_activity_01F8AEG417AWD2GElmj0FSRLRs0C5KJ6s7F",
-                        "name": "Download Veeam license file",
-                        "title": "Download Veeam license file",
+                        "name": "Download Veeam License file",
+                        "title": "Download Veeam License file",
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
-                          "display_name": "Download Veeam license file",
+                          "continue_on_failure": false,
+                          "description": "Download Veeam License.\ncurl must be used because is the only command that apparently bypass the Enanched Security that Windows Server OS enables by default",
+                          "display_name": "Download Veeam License file",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
                             "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
@@ -1027,7 +1047,8 @@
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
+                          "description": "Donwload Veeam Backup configuration file used to import existing backup configured template into the Veaam Backup installed.\ncurl must be used because is the only command that apparently bypass the Enanched Security that Windows Server OS enables by default",
                           "display_name": "Download Configuration XML file",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -1052,13 +1073,14 @@
                       },
                       {
                         "unique_name": "definition_activity_01FCMJXF9YKBT62QKal4jXv7Uf3QT8qIvL3",
-                        "name": "Download license install script",
-                        "title": "Download license install script",
+                        "name": "Download Script To Enable Backup",
+                        "title": "Download Script To Enable Backup",
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
-                          "display_name": "Download license install script",
+                          "continue_on_failure": false,
+                          "description": "Download the script to execute Veeam command to import license and configuration files.\n(Script used because single commands for different activities were not working).\ncurl must be used because is the only command that apparently bypass the Enanched Security that Windows Server OS enables by default",
+                          "display_name": "Download Script To Enable Backup",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
                             "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
@@ -1082,13 +1104,14 @@
                       },
                       {
                         "unique_name": "definition_activity_01FCMJA73B0MX13ShWyTgZrxkmi9ErW0zA3",
-                        "name": "Install License File from script",
-                        "title": "Install License File from script",
+                        "name": "Execute Script To Enable Backup",
+                        "title": "Execute Script To Enable Backup",
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
-                          "display_name": "Install License File from script",
+                          "continue_on_failure": false,
+                          "description": "Import license file and configuration file into Veeam",
+                          "display_name": "Execute Script To Enable Backup",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
                             "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.response_body$",
@@ -1138,7 +1161,8 @@
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
+                          "description": "Download Veeam Management Agent.\ncurl must be used because is the only command that apparently bypass the Enanched Security that Windows Server OS enables by default",
                           "display_name": "Download Management Agent",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -1168,7 +1192,8 @@
                         "type": "workflow.atomic_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
+                          "description": "Powershell command to install VAC.msi file and configure it, allowing the VAC to discover the workstation.",
                           "display_name": "Install and configure VAC Management Agent",
                           "input": {
                             "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01EC0MHVBV8NN6ooU5Gg7iLb2szQEIwxteX.output.action_type$",
@@ -1194,13 +1219,13 @@
                       {
                         "unique_name": "definition_activity_01FE3JISP55ZP6qOzNwxfeMWIAcMvgkrihu",
                         "name": "Set Variables",
-                        "title": "Set input variables for API",
+                        "title": "Set Inpput Variables for API calls",
                         "type": "core.set_multiple_variables",
                         "base_type": "activity",
                         "properties": {
                           "continue_on_failure": false,
-                          "description": "Set password as secure string before give it as input for the workflow.\nSet username as tenant/username",
-                          "display_name": "Set input variables for API",
+                          "description": "Set password as secure string before give it as input for the workflow.\nSet username as tenant/username (future HTTP request will need username as tenant/username to make authentication works)",
+                          "display_name": "Set Inpput Variables for API calls",
                           "skip_execution": false,
                           "variables_to_update": [
                             {
@@ -1222,7 +1247,7 @@
                         "type": "workflow.sub_workflow",
                         "base_type": "subworkflow",
                         "properties": {
-                          "continue_on_failure": true,
+                          "continue_on_failure": false,
                           "display_name": "Veeam VAC Backup Agent Management",
                           "input": {
                             "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF": "$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FE80BA0XHLP6V2xykJF5dca0YM0WYSpYb$",
@@ -1309,41 +1334,29 @@
         "base_type": "workflow",
         "variables": [
           {
-            "schema_id": "datatype.integer",
+            "schema_id": "datatype.string",
             "properties": {
-              "value": 0,
+              "value": "null",
               "scope": "local",
-              "name": "time_counter",
-              "type": "datatype.integer",
-              "description": "Variable used to avoid infinite loops",
+              "name": "backup_agent_uid",
+              "type": "datatype.string",
+              "description": "Veeam Backup Agent Unique ID that Veeam associates to the Backup Agent installed in the workstation\nDefault value null used for the loop (once the value will be updated, loop will end)",
               "is_required": false
             },
-            "unique_name": "variable_workflow_01FF37TH7QRX00g6dLFkD70yUOpZ10qZdoC",
+            "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
             "object_type": "variable_workflow"
           },
           {
             "schema_id": "datatype.string",
             "properties": {
-              "value": "null",
-              "scope": "local",
-              "name": "Veeam_workstation_uid",
-              "type": "datatype.string",
-              "description": "uID given by Veeam to identify the workstation",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.secure_string",
-            "properties": {
-              "value": "*****",
+              "value": "",
               "scope": "input",
-              "name": "password",
-              "type": "datatype.secure_string",
+              "name": "Cloud Provider",
+              "type": "datatype.string",
+              "description": "Cloud Environment in which the workstation is deplyed (insert Amazon if AWS, insert any other value for others)",
               "is_required": true
             },
-            "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
+            "unique_name": "variable_workflow_01FGRK4F7QTTF3EVDAvqF9fJmXZB1rfdTfj",
             "object_type": "variable_workflow"
           },
           {
@@ -1351,11 +1364,25 @@
             "properties": {
               "value": "CCS_LAB\\ccs.admin",
               "scope": "input",
-              "name": "username",
+              "name": "Username",
               "type": "datatype.string",
+              "description": "Veeam Admin username",
               "is_required": true
             },
             "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Workstation hostname",
+              "type": "datatype.string",
+              "description": "Name of the workstation",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
             "object_type": "variable_workflow"
           },
           {
@@ -1365,35 +1392,36 @@
               "scope": "local",
               "name": "loop_counter",
               "type": "datatype.integer",
+              "description": "Variable used to define the maximum number of loops. It will be decremented every loop, giving timeout errors when it reaches 0.",
               "is_required": false
             },
             "unique_name": "variable_workflow_01FGULDZQUH253YL4FCLRMica8cqsRTVMrJ",
             "object_type": "variable_workflow"
           },
           {
-            "schema_id": "datatype.integer",
+            "schema_id": "datatype.secure_string",
             "properties": {
-              "value": 400,
-              "scope": "local",
-              "name": "max_waiting_time",
-              "type": "datatype.integer",
-              "description": "Variable used to set the maximum waiting time inside a loop in seconds",
-              "is_required": false
+              "value": "*****",
+              "scope": "input",
+              "name": "Password",
+              "type": "datatype.secure_string",
+              "description": "Veeam Admin password",
+              "is_required": true
             },
-            "unique_name": "variable_workflow_01FFVE6SSIAKA5MppR8NNLFLNN8XO0tG9DX",
+            "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
             "object_type": "variable_workflow"
           },
           {
             "schema_id": "datatype.string",
             "properties": {
-              "value": "",
-              "scope": "local",
-              "name": "Management mode",
+              "value": "DEMO Workstation Policy",
+              "scope": "input",
+              "name": "Backup Policy",
               "type": "datatype.string",
-              "description": "Variable used to get and check the management mode of the workstation before to activate the backup",
-              "is_required": false
+              "description": "Veeam Backup Policy to apply to the workstation. It must be present among the one listed in the VAC",
+              "is_required": true
             },
-            "unique_name": "variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ",
+            "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
             "object_type": "variable_workflow"
           },
           {
@@ -1401,36 +1429,12 @@
             "properties": {
               "value": "null",
               "scope": "local",
-              "name": "BackupAgentID",
+              "name": "veeam_workstation_uid",
               "type": "datatype.string",
+              "description": "Workstation unique ID given by Veeam once the workstation has been discovered\nDefault value null used for the loop (once the value will be updated, loop will end)",
               "is_required": false
             },
-            "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "cqjw-058843fd9",
-              "scope": "input",
-              "name": "Workstation ID",
-              "type": "datatype.string",
-              "is_required": true
-            },
-            "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "local",
-              "name": "Operation Mode",
-              "type": "datatype.string",
-              "description": "Contain the Operational status of the VM [Licensed/unLicensed]",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU",
+            "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
             "object_type": "variable_workflow"
           },
           {
@@ -1440,6 +1444,7 @@
               "scope": "local",
               "name": "access_token",
               "type": "datatype.string",
+              "description": "Access Token given by the VAC API once authenticated",
               "is_required": false
             },
             "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
@@ -1456,56 +1461,6 @@
               "is_required": true
             },
             "unique_name": "variable_workflow_01FGQMN2OU5XL0HXJ51sTLitZhvtdGRFTvo",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "input",
-              "name": "Cloud Provider",
-              "type": "datatype.string",
-              "description": "Define input for the public cloud environment",
-              "is_required": true
-            },
-            "unique_name": "variable_workflow_01FGRK4F7QTTF3EVDAvqF9fJmXZB1rfdTfj",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "local",
-              "name": "refresh_token",
-              "type": "datatype.string",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01FBGA7MNWLKI2cZbWpkQnLAzBdvlbjpZBg",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "DEMO Workstation Policy",
-              "scope": "input",
-              "name": "Backup Policy",
-              "type": "datatype.string",
-              "is_required": true
-            },
-            "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "local",
-              "name": "GET all backups request body",
-              "type": "datatype.string",
-              "description": "Used to save the response body when we check the backup agent has been discovered",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01FCKRYK392NR44OdCr1m2s84MwLQhTvKFs",
             "object_type": "variable_workflow"
           }
         ],
@@ -1532,7 +1487,7 @@
           {
             "unique_name": "definition_activity_01FBP4PTRX9OE1aeMXKiN4VFx8maRrgDbhn",
             "name": "HTTP Request",
-            "title": "VAC Authentication OAuth 2.0",
+            "title": "VAC Authentication",
             "type": "web-service.http_request",
             "base_type": "activity",
             "properties": {
@@ -1548,7 +1503,8 @@
                   "value": "application/x-www-form-urlencoded"
                 }
               ],
-              "display_name": "VAC Authentication OAuth 2.0",
+              "description": "HTTP GET request for OAuth 2.0 authentication to the VAC",
+              "display_name": "VAC Authentication",
               "method": "POST",
               "relative_url": "api/v3/token",
               "runtime_user": {
@@ -1573,17 +1529,13 @@
             "properties": {
               "action_timeout": 180,
               "continue_on_failure": false,
+              "description": "JsonPath query to the body of the previous HTTP GET request to get the access token that is going to be used in the other API calls",
               "display_name": "Get Authorization Token ",
               "input_json": "$activity.definition_activity_01FBP4PTRX9OE1aeMXKiN4VFx8maRrgDbhn.output.response_body$",
               "jsonpath_queries": [
                 {
                   "jsonpath_query": "$.access_token",
                   "jsonpath_query_name": "access_token",
-                  "jsonpath_query_type": "string"
-                },
-                {
-                  "jsonpath_query": "$.refresh_token",
-                  "jsonpath_query_name": "refresh_token",
                   "jsonpath_query_type": "string"
                 }
               ],
@@ -1599,6 +1551,7 @@
             "base_type": "activity",
             "properties": {
               "continue_on_failure": false,
+              "description": "Check if the authentication was successful ",
               "display_name": "Authentication Check",
               "skip_execution": false
             },
@@ -1616,8 +1569,8 @@
                     "operator": "nmw",
                     "right_operand": "*access_token*"
                   },
-                  "continue_on_failure": true,
-                  "description": "execute token refresh",
+                  "continue_on_failure": false,
+                  "description": "The access token cannot be found in the body, meaning the authentication has failed.",
                   "display_name": "Authentication Failed",
                   "skip_execution": false
                 },
@@ -1650,8 +1603,8 @@
                     "operator": "mw",
                     "right_operand": "*access_token*"
                   },
-                  "continue_on_failure": true,
-                  "description": "do nothing",
+                  "continue_on_failure": false,
+                  "description": "Access token can be found in the response body, meaning authentication succeded",
                   "display_name": "Authentication Suceeded",
                   "skip_execution": false
                 },
@@ -1665,6 +1618,7 @@
                     "base_type": "activity",
                     "properties": {
                       "continue_on_failure": false,
+                      "description": "First loop to check if the VAC has already discovered the workstation. The Management Agent must has been already installed in the workstation in order to see it discovered in the VAC. (Management Agent installation is done in the Veeam Agent Setup workflow from whic the Veeam VAC Backup Agent Management is called as atomic workflow)",
                       "display_name": "While Loop to check workstation discovered",
                       "skip_execution": false
                     },
@@ -1691,7 +1645,7 @@
                             }
                           },
                           "continue_on_failure": false,
-                          "description": "Check if Veeam has already associated an ID to the Workstation, meaning that it has been already discovered",
+                          "description": "Check if Veeam has already associated an ID to the Workstation, meaning that it has been already discovered.\nThe second condition relates to a counter for limit the number of loops.",
                           "display_name": "Check if veeam workstation id exist",
                           "skip_execution": false
                         },
@@ -1700,7 +1654,7 @@
                           {
                             "unique_name": "definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY",
                             "name": "HTTP Request",
-                            "title": "Get all discovered computer",
+                            "title": "Get All Discovered Computer",
                             "type": "web-service.http_request",
                             "base_type": "activity",
                             "properties": {
@@ -1714,7 +1668,8 @@
                                   "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
                                 }
                               ],
-                              "display_name": "Get all discovered computer",
+                              "description": "HTTP GET Request to the API exposed by VAC in order to get the list of all discovered computer",
+                              "display_name": "Get All Discovered Computer",
                               "method": "GET",
                               "relative_url": "api/v3/discovery/computers",
                               "runtime_user": {
@@ -1739,7 +1694,7 @@
                             "base_type": "activity",
                             "properties": {
                               "continue_on_failure": false,
-                              "description": "Check if it exists a Veeam UID for the specific workstation",
+                              "description": "Check if it exists a Veeam unique identifier (UID) associated to the specific workstation",
                               "display_name": "Has the workstation been discovered?",
                               "skip_execution": false
                             },
@@ -1766,37 +1721,12 @@
                                     }
                                   },
                                   "continue_on_failure": false,
-                                  "description": "workstation id not found the response body of previous HTTP request ",
+                                  "description": "Workstation ID and IP address have not been found in the response body of HTTP GET discovered computers. Meaning that the workstation we want to backup is not among discovered computers.\nThere are two conditions (ID and IP address) because Veeam associates a hostname to AWS workstation different from the one associated by Cloud Clenter Suite, meaning that we cannot use as input to query the body of HTTP GET response from Veeam API. (When using this workflow as atomic into the Veeam agent setup, the ideal condition would be having correlations between hostnames and ID between Veeam and CCS for AWS cloud.) \n",
                                   "display_name": "No workstation id found among discovered computers",
                                   "skip_execution": false
                                 },
                                 "object_type": "definition_activity",
                                 "actions": [
-                                  {
-                                    "unique_name": "definition_activity_01FFVCQA9OGZ13COKoqGp7k5EFNfy9CWEbw",
-                                    "name": "Maximum loop waiting time",
-                                    "title": "Maximum loop waiting time",
-                                    "type": "workflow.sub_workflow",
-                                    "base_type": "subworkflow",
-                                    "properties": {
-                                      "continue_on_failure": false,
-                                      "display_name": "Maximum loop waiting time",
-                                      "input": {
-                                        "variable_workflow_01FFUQNBN7I7D0RtNO0Vi7UsFibrWAgIcOA": "$activity.definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY.output.start_time$",
-                                        "variable_workflow_01FFURD1JB7DO2a3ipQRZOGjO6ByBTxMZIa": "$activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.start_time$",
-                                        "variable_workflow_01FFUVZ29EXTE6K6J69ewYH2FumVcKxabRD": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FFVE6SSIAKA5MppR8NNLFLNN8XO0tG9DX$"
-                                      },
-                                      "runtime_user": {
-                                        "target_default": true
-                                      },
-                                      "skip_execution": true,
-                                      "target": {
-                                        "no_target": true
-                                      },
-                                      "workflow_id": "definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq"
-                                    },
-                                    "object_type": "definition_activity"
-                                  },
                                   {
                                     "unique_name": "definition_activity_01FE9WJDIG7GN02GJcjXX82npWEgKgB6ZTa",
                                     "name": "Sleep",
@@ -1805,6 +1735,7 @@
                                     "base_type": "activity",
                                     "properties": {
                                       "continue_on_failure": false,
+                                      "description": "Sleep to wait before to retry the loop",
                                       "display_name": "Sleep",
                                       "skip_execution": false,
                                       "sleep_interval": 10
@@ -1814,12 +1745,13 @@
                                   {
                                     "unique_name": "definition_activity_01FGUM3YGWF2820OYcV0GiqSKIMP5srVbK6",
                                     "name": "Set Variables",
-                                    "title": "Decrease counter",
+                                    "title": "Decrease Loop Counter",
                                     "type": "core.set_multiple_variables",
                                     "base_type": "activity",
                                     "properties": {
                                       "continue_on_failure": false,
-                                      "display_name": "Decrease counter",
+                                      "description": "Decrese the counter used for limiting the number of loops",
+                                      "display_name": "Decrease Loop Counter",
                                       "skip_execution": false,
                                       "variables_to_update": [
                                         {
@@ -1885,6 +1817,7 @@
                                             "right_operand": "Amazon"
                                           },
                                           "continue_on_failure": false,
+                                          "description": "Se l'environment è AWS, allora significa che c'è stato un match sull'IP Address. Dunque dobbiamo ottenere il Veeam UID associato alla workstation ma anche l'hostname che Veeam da alla workstation (diverso da quello di CCS)",
                                           "display_name": "If cloud == AWS",
                                           "skip_execution": false
                                         },
@@ -1893,14 +1826,14 @@
                                           {
                                             "unique_name": "definition_activity_01FGRM7Q7KGNA5IfklYnOM19Dw4uuoBvA0U",
                                             "name": "JSONPath Query",
-                                            "title": "Get AWS workstation UID",
+                                            "title": "Get AWS Workstation UID",
                                             "type": "corejava.jsonpathquery",
                                             "base_type": "activity",
                                             "properties": {
                                               "action_timeout": 180,
                                               "continue_on_failure": false,
-                                              "description": "Get the Veeam UID",
-                                              "display_name": "Get AWS workstation UID",
+                                              "description": "Get the Veeam UID and the hostname of the workstation.",
+                                              "display_name": "Get AWS Workstation UID",
                                               "input_json": "$activity.definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY.output.response_body$",
                                               "jsonpath_queries": [
                                                 {
@@ -1921,12 +1854,13 @@
                                           {
                                             "unique_name": "definition_activity_01FGROBVJCBG22FIXIpLxKRFZ6wAhV5MeWK",
                                             "name": "Set Variables",
-                                            "title": "Update AWS veeam variables",
+                                            "title": "Update AWS Veeam Variables",
                                             "type": "core.set_multiple_variables",
                                             "base_type": "activity",
                                             "properties": {
                                               "continue_on_failure": false,
-                                              "display_name": "Update AWS veeam variables",
+                                              "description": "Store values into variables to use them out of the loop",
+                                              "display_name": "Update AWS Veeam Variables",
                                               "skip_execution": false,
                                               "variables_to_update": [
                                                 {
@@ -1946,17 +1880,18 @@
                                       {
                                         "unique_name": "definition_activity_01FGRKEC86DAN6ERfFzjCRjLbRBHQxkpjTK",
                                         "name": "Condition Branch",
-                                        "title": "If cloud == GCP",
+                                        "title": "If cloud in not == AWS",
                                         "type": "logic.condition_block",
                                         "base_type": "activity",
                                         "properties": {
                                           "condition": {
                                             "left_operand": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FGRK4F7QTTF3EVDAvqF9fJmXZB1rfdTfj$",
                                             "operator": "ne",
-                                            "right_operand": "amazon"
+                                            "right_operand": "Amazon"
                                           },
                                           "continue_on_failure": false,
-                                          "display_name": "If cloud == GCP",
+                                          "description": "If cloud is GCP, Veeam and CCS has same values to identify workstation hostname. This has been verified only for GCP.",
+                                          "display_name": "If cloud in not == AWS",
                                           "skip_execution": false
                                         },
                                         "object_type": "definition_activity",
@@ -1964,13 +1899,14 @@
                                           {
                                             "unique_name": "definition_activity_01FEA0OMAXZRS601d2O2mB3KJZBgjgf9J6i",
                                             "name": "JSONPath Query",
-                                            "title": "Get workstation UID",
+                                            "title": "Get Veeam Workstation UID",
                                             "type": "corejava.jsonpathquery",
                                             "base_type": "activity",
                                             "properties": {
                                               "action_timeout": 180,
                                               "continue_on_failure": false,
-                                              "display_name": "Get workstation UID",
+                                              "description": "Get the Veeam UID of the workstation.",
+                                              "display_name": "Get Veeam Workstation UID",
                                               "input_json": "$activity.definition_activity_01FE9MMT6YW6T0h089pnJEdI9EzfSLjO1BY.output.response_body$",
                                               "jsonpath_queries": [
                                                 {
@@ -1986,13 +1922,13 @@
                                           {
                                             "unique_name": "definition_activity_01FEA28O5QS43751OtjSlqSs1GS31qmOBOH",
                                             "name": "Set Variables",
-                                            "title": "Update veeam workstation id variable",
+                                            "title": "Update Veeam Workstation UID Variable",
                                             "type": "core.set_multiple_variables",
                                             "base_type": "activity",
                                             "properties": {
                                               "continue_on_failure": false,
-                                              "description": "In order to get out of the loop",
-                                              "display_name": "Update veeam workstation id variable",
+                                              "description": "Store value into variable to use them out of the loop",
+                                              "display_name": "Update Veeam Workstation UID Variable",
                                               "skip_execution": false,
                                               "variables_to_update": [
                                                 {
@@ -2034,6 +1970,7 @@
                           "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
                         }
                       ],
+                      "description": "HTTP GET request to install the Backup Agent on the workstation.",
                       "display_name": "Install Backup Agents",
                       "method": "POST",
                       "relative_url": "api/v3/discovery/computers/$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8$/installBackupAgent",
@@ -2054,12 +1991,13 @@
                   {
                     "unique_name": "definition_activity_01FF3H5JH094D3ABEPtbZOtK7ACByDnJdrR",
                     "name": "Set Variables",
-                    "title": "Reset loop counter",
+                    "title": "Reset Loop Counter",
                     "type": "core.set_multiple_variables",
                     "base_type": "activity",
                     "properties": {
                       "continue_on_failure": false,
-                      "display_name": "Reset loop counter",
+                      "description": "Reset loop counter to the maximum number of loops possible",
+                      "display_name": "Reset Loop Counter",
                       "skip_execution": false,
                       "variables_to_update": [
                         {
@@ -2078,6 +2016,7 @@
                     "base_type": "activity",
                     "properties": {
                       "continue_on_failure": false,
+                      "description": "Wait before the Backup agent isntallation succeded",
                       "display_name": "While LOOP to wait Backup Agent discovery ",
                       "skip_execution": false
                     },
@@ -2104,6 +2043,7 @@
                             }
                           },
                           "continue_on_failure": false,
+                          "description": "Check if Veeam has already defined a Backup UID asociated to the workstation. The Backup UID is different from the Workstation UID seen in the previous loop. The Backup ID is associated when the Backup Agent in installed and activated, so when the workstation is in the managed mode.",
                           "display_name": "Check if backup agents ID exist",
                           "skip_execution": false
                         },
@@ -2112,7 +2052,7 @@
                           {
                             "unique_name": "definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z",
                             "name": "HTTP Request",
-                            "title": "Get all Backup Agents",
+                            "title": "Get All Backup Agents",
                             "type": "web-service.http_request",
                             "base_type": "activity",
                             "properties": {
@@ -2127,7 +2067,8 @@
                                   "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
                                 }
                               ],
-                              "display_name": "Get all Backup Agents",
+                              "description": "HTTP GET request to get all the backups agents VAC has installed so far",
+                              "display_name": "Get All Backup Agents",
                               "method": "GET",
                               "relative_url": "api/v3/infrastructure/backupAgents",
                               "runtime_user": {
@@ -2152,6 +2093,7 @@
                             "base_type": "activity",
                             "properties": {
                               "continue_on_failure": false,
+                              "description": "Check if the Backup UID associated to the workstation is found in the response body",
                               "display_name": "HAS the backup agent been discovered?",
                               "skip_execution": false
                             },
@@ -2160,7 +2102,7 @@
                               {
                                 "unique_name": "definition_activity_01FCKE1M3YMR42oPl3q846U4PZG43n8mnGH",
                                 "name": "Condition Branch",
-                                "title": "No Workstation UID found",
+                                "title": "No Backup UID found",
                                 "type": "logic.condition_block",
                                 "base_type": "activity",
                                 "properties": {
@@ -2170,36 +2112,12 @@
                                     "right_operand": "*$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$*"
                                   },
                                   "continue_on_failure": false,
-                                  "display_name": "No Workstation UID found",
+                                  "description": "The workstation hostname can't be found among discovered backup Agents, meaning the installation of the Backup Agent is not completed yet.",
+                                  "display_name": "No Backup UID found",
                                   "skip_execution": false
                                 },
                                 "object_type": "definition_activity",
                                 "actions": [
-                                  {
-                                    "unique_name": "definition_activity_01FFVEXK8VF6X5jKNpEmcJWC4g2HQACtNvJ",
-                                    "name": "Maximum loop waiting time",
-                                    "title": "Maximum loop waiting time",
-                                    "type": "workflow.sub_workflow",
-                                    "base_type": "subworkflow",
-                                    "properties": {
-                                      "continue_on_failure": false,
-                                      "display_name": "Maximum loop waiting time",
-                                      "input": {
-                                        "variable_workflow_01FFUQNBN7I7D0RtNO0Vi7UsFibrWAgIcOA": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.start_time$",
-                                        "variable_workflow_01FFURD1JB7DO2a3ipQRZOGjO6ByBTxMZIa": "$activity.definition_activity_01FF3H5JH094D3ABEPtbZOtK7ACByDnJdrR.output.start_time$",
-                                        "variable_workflow_01FFUVZ29EXTE6K6J69ewYH2FumVcKxabRD": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FFVE6SSIAKA5MppR8NNLFLNN8XO0tG9DX$"
-                                      },
-                                      "runtime_user": {
-                                        "target_default": true
-                                      },
-                                      "skip_execution": true,
-                                      "target": {
-                                        "no_target": true
-                                      },
-                                      "workflow_id": "definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq"
-                                    },
-                                    "object_type": "definition_activity"
-                                  },
                                   {
                                     "unique_name": "definition_activity_01FCKJ9FSVL032z2DJwAGgVBwxVELvVkMiI",
                                     "name": "Sleep",
@@ -2208,6 +2126,7 @@
                                     "base_type": "activity",
                                     "properties": {
                                       "continue_on_failure": false,
+                                      "description": "Sleep to wait before to retry the loop",
                                       "display_name": "Sleep",
                                       "skip_execution": false,
                                       "sleep_interval": 20
@@ -2217,12 +2136,13 @@
                                   {
                                     "unique_name": "definition_activity_01FGUOVGQJH4D6y8fjIvOLnOoLDTrs0Kl2Z",
                                     "name": "Set Variables",
-                                    "title": "Decrease loop counter",
+                                    "title": "Decrease Loop Counter",
                                     "type": "core.set_multiple_variables",
                                     "base_type": "activity",
                                     "properties": {
                                       "continue_on_failure": false,
-                                      "display_name": "Decrease loop counter",
+                                      "description": "Decrese the counter used for limiting the number of loops",
+                                      "display_name": "Decrease Loop Counter",
                                       "skip_execution": false,
                                       "variables_to_update": [
                                         {
@@ -2248,6 +2168,7 @@
                                     "right_operand": "*$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$*"
                                   },
                                   "continue_on_failure": false,
+                                  "description": "A Backup Agent UID associated to the workstation hostname has been found, meaning the backup agent installation succeded.",
                                   "display_name": "Workstation ID found",
                                   "skip_execution": false
                                 },
@@ -2256,28 +2177,19 @@
                                   {
                                     "unique_name": "definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO",
                                     "name": "JSONPath Query",
-                                    "title": "Get Backup Agent details",
+                                    "title": "Get Veeam Backup Agent UID",
                                     "type": "corejava.jsonpathquery",
                                     "base_type": "activity",
                                     "properties": {
                                       "action_timeout": 180,
                                       "continue_on_failure": false,
-                                      "display_name": "Get Backup Agent details",
-                                      "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCKRYK392NR44OdCr1m2s84MwLQhTvKFs$",
+                                      "description": "JsonPath query to get the Backup Agent UID ",
+                                      "display_name": "Get Veeam Backup Agent UID",
+                                      "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$",
                                       "jsonpath_queries": [
                                         {
                                           "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].instanceUid",
                                           "jsonpath_query_name": "BackupAgentID",
-                                          "jsonpath_query_type": "string"
-                                        },
-                                        {
-                                          "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].managementMode",
-                                          "jsonpath_query_name": "ManagementMode",
-                                          "jsonpath_query_type": "string"
-                                        },
-                                        {
-                                          "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].operationMode",
-                                          "jsonpath_query_name": "operationMode",
                                           "jsonpath_query_type": "string"
                                         }
                                       ],
@@ -2288,26 +2200,18 @@
                                   {
                                     "unique_name": "definition_activity_01FCKNIL3HAZ36UHzn0Lf0Bx5VnqRHXnqbD",
                                     "name": "Set Variables",
-                                    "title": "Set up variables",
+                                    "title": "Update Veeam Backup Agent UID Variable",
                                     "type": "core.set_multiple_variables",
                                     "base_type": "activity",
                                     "properties": {
                                       "continue_on_failure": false,
-                                      "description": "Set up variables that are going to be used for outside the loop",
-                                      "display_name": "Set up variables",
+                                      "description": "Update Backup Agent UID variable",
+                                      "display_name": "Update Veeam Backup Agent UID Variable",
                                       "skip_execution": false,
                                       "variables_to_update": [
                                         {
                                           "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$",
                                           "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.BackupAgentID$"
-                                        },
-                                        {
-                                          "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ$",
-                                          "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.ManagementMode$"
-                                        },
-                                        {
-                                          "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
-                                          "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.operationMode$"
                                         }
                                       ]
                                     },
@@ -2339,6 +2243,7 @@
                           "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
                         }
                       ],
+                      "description": "HTTP GET request to get the policies already defined in the VAC",
                       "display_name": "Get Available Backup Policies",
                       "method": "GET",
                       "relative_url": "api/v3/configuration/backupPolicies",
@@ -2359,13 +2264,14 @@
                   {
                     "unique_name": "definition_activity_01FC92IAO5N5V3pCuXP8sV4PUbZIkFfiBgy",
                     "name": "JSONPath Query",
-                    "title": "Get Backup Policy ID",
+                    "title": "Get Veeam Backup Policy ID",
                     "type": "corejava.jsonpathquery",
                     "base_type": "activity",
                     "properties": {
                       "action_timeout": 180,
                       "continue_on_failure": false,
-                      "display_name": "Get Backup Policy ID",
+                      "description": "Get the Veam Backup Policy ID of the specific policy in input",
+                      "display_name": "Get Veeam Backup Policy ID",
                       "input_json": "$activity.definition_activity_01FC8VBSSU00X5mCuYAleKYt0ZeJYhzJd0L.output.response_body$",
                       "jsonpath_queries": [
                         {
@@ -2381,7 +2287,7 @@
                   {
                     "unique_name": "definition_activity_01FEVSTLR2TLV7Q87j0Bq4YAlqj1dn2KXWF",
                     "name": "HTTP Request",
-                    "title": "Assign Policy to VM",
+                    "title": "Assign Veeam Backup Policy To Workstation",
                     "type": "web-service.http_request",
                     "base_type": "activity",
                     "properties": {
@@ -2395,7 +2301,8 @@
                           "value": "Bearer $activity.definition_activity_01FBPPR3WMFBP5yDzIhtuVVKCjuyQFlvGJz.output.jsonpath_queries.access_token$"
                         }
                       ],
-                      "display_name": "Assign Policy to VM",
+                      "description": "Assign the Veeam Backup Policy to the workstation",
+                      "display_name": "Assign Veeam Backup Policy To Workstation",
                       "method": "POST",
                       "relative_url": "api/v3/infrastructure/backupAgents/windows/$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$/assignedPolicies?policyUid=$activity.definition_activity_01FC92IAO5N5V3pCuXP8sV4PUbZIkFfiBgy.output.jsonpath_queries.Backup Policy ID$",
                       "runtime_user": {
@@ -2420,176 +2327,7 @@
         "categories": [
           "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
         ]
-      },
-      "subworkflows": [
-        {
-          "workflow": {
-            "unique_name": "definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq",
-            "name": "Maximum loop waiting time",
-            "title": "Maximum loop waiting time",
-            "type": "generic.workflow",
-            "base_type": "workflow",
-            "variables": [
-              {
-                "schema_id": "datatype.date",
-                "properties": {
-                  "scope": "input",
-                  "name": "Original date time",
-                  "type": "datatype.date",
-                  "description": "Time point from which substract",
-                  "is_required": false
-                },
-                "unique_name": "variable_workflow_01FFUQNBN7I7D0RtNO0Vi7UsFibrWAgIcOA",
-                "object_type": "variable_workflow"
-              },
-              {
-                "schema_id": "datatype.date",
-                "properties": {
-                  "scope": "input",
-                  "name": "Time to substract",
-                  "type": "datatype.date",
-                  "description": "Time to substract to the originale date time",
-                  "is_required": false
-                },
-                "unique_name": "variable_workflow_01FFURD1JB7DO2a3ipQRZOGjO6ByBTxMZIa",
-                "object_type": "variable_workflow"
-              },
-              {
-                "schema_id": "datatype.integer",
-                "properties": {
-                  "scope": "local",
-                  "name": "counter_seconds",
-                  "type": "datatype.integer",
-                  "description": "time difference in seconds",
-                  "is_required": false
-                },
-                "unique_name": "variable_workflow_01FFUT8EIRF3G36hZolrNRVuenNHpVhLfka",
-                "object_type": "variable_workflow"
-              },
-              {
-                "schema_id": "datatype.integer",
-                "properties": {
-                  "scope": "input",
-                  "name": "Max time value",
-                  "type": "datatype.integer",
-                  "description": "Max time value used in input",
-                  "is_required": false
-                },
-                "unique_name": "variable_workflow_01FFUVZ29EXTE6K6J69ewYH2FumVcKxabRD",
-                "object_type": "variable_workflow"
-              }
-            ],
-            "properties": {
-              "atomic": {
-                "is_atomic": false
-              },
-              "delete_workflow_instance": false,
-              "description": "Set the maximum time to wait between two start date activities",
-              "display_name": "Maximum loop waiting time",
-              "runtime_user": {
-                "override_target_runtime_user": false,
-                "specify_on_workflow_start": false,
-                "target_default": true
-              },
-              "target": {
-                "execute_on_target_group": false,
-                "execute_on_workflow_target": false,
-                "no_target": true,
-                "specify_on_workflow_start": false
-              }
-            },
-            "object_type": "definition_workflow",
-            "actions": [
-              {
-                "unique_name": "definition_activity_01FFUO9DXY58V03QWuchnhUYQSmxCP8qLnm",
-                "name": "Calculate Date Time Difference",
-                "title": "Calculate Date Time Difference",
-                "type": "core.calculate_date_time_difference",
-                "base_type": "activity",
-                "properties": {
-                  "continue_on_failure": false,
-                  "display_name": "Calculate Date Time Difference",
-                  "original_date": "$workflow.definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq.input.variable_workflow_01FFUQNBN7I7D0RtNO0Vi7UsFibrWAgIcOA$",
-                  "skip_execution": false,
-                  "subtract_date": "$workflow.definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq.input.variable_workflow_01FFURD1JB7DO2a3ipQRZOGjO6ByBTxMZIa$"
-                },
-                "object_type": "definition_activity"
-              },
-              {
-                "unique_name": "definition_activity_01FFUS9OU4J533hq4JERDzFOtlRBw3bTRdQ",
-                "name": "Set Variables",
-                "title": "Set time stamp",
-                "type": "core.set_multiple_variables",
-                "base_type": "activity",
-                "properties": {
-                  "continue_on_failure": false,
-                  "display_name": "Set time stamp",
-                  "skip_execution": false,
-                  "variables_to_update": [
-                    {
-                      "variable_to_update": "$workflow.definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq.local.variable_workflow_01FFUT8EIRF3G36hZolrNRVuenNHpVhLfka$",
-                      "variable_value_new": "$activity.definition_activity_01FFUO9DXY58V03QWuchnhUYQSmxCP8qLnm.output.seconds$"
-                    }
-                  ]
-                },
-                "object_type": "definition_activity"
-              },
-              {
-                "unique_name": "definition_activity_01FFUTQLIHV8F6Ve0NenWfdeUGa1F2m8edh",
-                "name": "Condition Block",
-                "title": "Check time difference",
-                "type": "logic.if_else",
-                "base_type": "activity",
-                "properties": {
-                  "continue_on_failure": false,
-                  "display_name": "Check time difference",
-                  "skip_execution": false
-                },
-                "object_type": "definition_activity",
-                "blocks": [
-                  {
-                    "unique_name": "definition_activity_01FFUTQNPSHN809h1IWuLMaTOFAIRONhbkY",
-                    "name": "Condition Branch",
-                    "title": "Is time difference more than max value?",
-                    "type": "logic.condition_block",
-                    "base_type": "activity",
-                    "properties": {
-                      "condition": {
-                        "left_operand": "$workflow.definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq.local.variable_workflow_01FFUT8EIRF3G36hZolrNRVuenNHpVhLfka$",
-                        "operator": "gt",
-                        "right_operand": "$workflow.definition_workflow_01FFUNOWP5QK961UuZPysh5qwddBFID7yvq.input.variable_workflow_01FFUVZ29EXTE6K6J69ewYH2FumVcKxabRD$"
-                      },
-                      "continue_on_failure": false,
-                      "description": "Max time value in seconds given in iput ",
-                      "display_name": "Is time difference more than max value?",
-                      "skip_execution": false
-                    },
-                    "object_type": "definition_activity",
-                    "actions": [
-                      {
-                        "unique_name": "definition_activity_01FFUW9FK6MPJ50tmboe9c9SjN5dZIa4K7d",
-                        "name": "Failed",
-                        "title": "Completed",
-                        "type": "logic.completed",
-                        "base_type": "activity",
-                        "properties": {
-                          "completion_type": "failed-completed",
-                          "display_name": "Failed",
-                          "result_message": "Time out: loop has not been resolved in max time"
-                        },
-                        "object_type": "definition_activity"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "categories": [
-              "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
-            ]
-          }
-        }
-      ]
+      }
     }
   ],
   "atomic_workflows": [
