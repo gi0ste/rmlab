@@ -7,16 +7,68 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.integer",
+        "schema_id": "datatype.string",
         "properties": {
-          "value": 0,
+          "value": "",
           "scope": "local",
-          "name": "time_counter",
-          "type": "datatype.integer",
-          "description": "Variable used to avoid infinite loops",
+          "name": "access_token",
+          "type": "datatype.string",
+          "description": "Access Token given by the VAC API once authenticated",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FF37TH7QRX00g6dLFkD70yUOpZ10qZdoC",
+        "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Password",
+          "type": "datatype.secure_string",
+          "description": "Veeam Admin password",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "CCS_LAB\\ccs.admin",
+          "scope": "input",
+          "name": "Username",
+          "type": "datatype.string",
+          "description": "Veeam Admin username",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Workstation hostname",
+          "type": "datatype.string",
+          "description": "Name of the workstation",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "local",
+          "name": "veeam_workstation_uid",
+          "type": "datatype.string",
+          "description": "Workstation unique ID given by Veeam once the workstation has been discovered\nDefault value null used for the loop (once the value will be updated, loop will end)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
         "object_type": "variable_workflow"
       },
       {
@@ -26,35 +78,49 @@
           "scope": "input",
           "name": "Cloud Provider",
           "type": "datatype.string",
-          "description": "Define input for the public cloud environment",
+          "description": "Cloud Environment in which the workstation is deplyed (insert Amazon if AWS, insert any other value for others)",
           "is_required": true
         },
         "unique_name": "variable_workflow_01FGRK4F7QTTF3EVDAvqF9fJmXZB1rfdTfj",
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "datatype.string",
+        "schema_id": "datatype.integer",
         "properties": {
-          "value": "",
+          "value": 10,
           "scope": "local",
-          "name": "access_token",
-          "type": "datatype.string",
+          "name": "loop_counter",
+          "type": "datatype.integer",
+          "description": "Variable used to define the maximum number of loops. It will be decremented every loop, giving timeout errors when it reaches 0.",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
+        "unique_name": "variable_workflow_01FGULDZQUH253YL4FCLRMica8cqsRTVMrJ",
         "object_type": "variable_workflow"
       },
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "Management mode",
+          "value": "DEMO Workstation Policy",
+          "scope": "input",
+          "name": "Backup Policy",
           "type": "datatype.string",
-          "description": "Variable used to get and check the management mode of the workstation before to activate the backup",
+          "description": "Veeam Backup Policy to apply to the workstation. It must be present among the one listed in the VAC",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "local",
+          "name": "backup_agent_uid",
+          "type": "datatype.string",
+          "description": "Veeam Backup Agent Unique ID that Veeam associates to the Backup Agent installed in the workstation\nDefault value null used for the loop (once the value will be updated, loop will end)",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ",
+        "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
         "object_type": "variable_workflow"
       },
       {
@@ -68,142 +134,6 @@
           "is_required": true
         },
         "unique_name": "variable_workflow_01FGQMN2OU5XL0HXJ51sTLitZhvtdGRFTvo",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.integer",
-        "properties": {
-          "value": 10,
-          "scope": "local",
-          "name": "loop_counter",
-          "type": "datatype.integer",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FGULDZQUH253YL4FCLRMica8cqsRTVMrJ",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "GET all backups request body",
-          "type": "datatype.string",
-          "description": "Used to save the response body when we check the backup agent has been discovered",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FCKRYK392NR44OdCr1m2s84MwLQhTvKFs",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "*****",
-          "scope": "input",
-          "name": "password",
-          "type": "datatype.secure_string",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "cqjw-058843fd9",
-          "scope": "input",
-          "name": "Workstation ID",
-          "type": "datatype.string",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "DEMO Workstation Policy",
-          "scope": "input",
-          "name": "Backup Policy",
-          "type": "datatype.string",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "refresh_token",
-          "type": "datatype.string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FBGA7MNWLKI2cZbWpkQnLAzBdvlbjpZBg",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "CCS_LAB\\ccs.admin",
-          "scope": "input",
-          "name": "username",
-          "type": "datatype.string",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "Operation Mode",
-          "type": "datatype.string",
-          "description": "Contain the Operational status of the VM [Licensed/unLicensed]",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.integer",
-        "properties": {
-          "value": 400,
-          "scope": "local",
-          "name": "max_waiting_time",
-          "type": "datatype.integer",
-          "description": "Variable used to set the maximum waiting time inside a loop in seconds",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FFVE6SSIAKA5MppR8NNLFLNN8XO0tG9DX",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "null",
-          "scope": "local",
-          "name": "BackupAgentID",
-          "type": "datatype.string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "null",
-          "scope": "local",
-          "name": "Veeam_workstation_uid",
-          "type": "datatype.string",
-          "description": "uID given by Veeam to identify the workstation",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
         "object_type": "variable_workflow"
       }
     ],
@@ -928,21 +858,11 @@
                                   "continue_on_failure": false,
                                   "description": "JsonPath query to get the Backup Agent UID ",
                                   "display_name": "Get Veeam Backup Agent UID",
-                                  "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCKRYK392NR44OdCr1m2s84MwLQhTvKFs$",
+                                  "input_json": "$activity.definition_activity_01FAYMZXXRYCW3D6JnwPn8OlBfnl55Iwr4Z.output.response_body$",
                                   "jsonpath_queries": [
                                     {
                                       "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].instanceUid",
                                       "jsonpath_query_name": "BackupAgentID",
-                                      "jsonpath_query_type": "string"
-                                    },
-                                    {
-                                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].managementMode",
-                                      "jsonpath_query_name": "ManagementMode",
-                                      "jsonpath_query_type": "string"
-                                    },
-                                    {
-                                      "jsonpath_query": "$.data.[?(@.name==\"$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.input.variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l$\")].operationMode",
-                                      "jsonpath_query_name": "operationMode",
                                       "jsonpath_query_type": "string"
                                     }
                                   ],
@@ -965,14 +885,6 @@
                                     {
                                       "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt$",
                                       "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.BackupAgentID$"
-                                    },
-                                    {
-                                      "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCLB6B40YKS0VFKVSmCGc9St75ISZa7tJ$",
-                                      "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.ManagementMode$"
-                                    },
-                                    {
-                                      "variable_to_update": "$workflow.definition_workflow_01FAVVWY1S4J71UfUDphtO7C6C8uWMqwg5X.local.variable_workflow_01FCAF0KDJ2IR0xuB6pX3Ps6dIJ9UVUN2uU$",
-                                      "variable_value_new": "$activity.definition_activity_01FE9ZJMK7FW62luHEMq5dHphSZoVJQEDoO.output.jsonpath_queries.operationMode$"
                                     }
                                   ]
                                 },
