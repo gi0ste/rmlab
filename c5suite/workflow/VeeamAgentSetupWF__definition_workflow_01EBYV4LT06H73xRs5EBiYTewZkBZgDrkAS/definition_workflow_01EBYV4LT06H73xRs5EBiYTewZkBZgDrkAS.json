@@ -9,6 +9,19 @@
       {
         "schema_id": "datatype.string",
         "properties": {
+          "value": "installLicense.cmd",
+          "scope": "local",
+          "name": "activating script file [windows unmanaged]",
+          "type": "datatype.string",
+          "description": "Name of the activating script stored in Veeam repository used for importing and activate both license and configuration in unmanaged mode ",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL1C7J6DLR76l0FIMM0r27zxtnVghrREm",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
           "value": "",
           "scope": "input",
           "name": "CC_RUN_ID",
@@ -21,79 +34,14 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
+          "value": "veeam_4.0.0.1961_amd64.deb",
           "scope": "local",
-          "name": "username VAC",
+          "name": "veeam deb file [ubuntu]",
           "type": "datatype.string",
-          "description": "VAC username made of tenant/username. Used as input for the VAC APIs workflow",
+          "description": "Veeam deb file stored in Veeam repository",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FE80BA0XHLP6V2xykJF5dca0YM0WYSpYb",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "CGW001.MULTICLOUDSERVICES.IT",
-          "scope": "local",
-          "name": "Cloud Gateway - Windows",
-          "type": "datatype.string",
-          "description": "Veeam Cloud gateway used in windows ",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FE1RVV4WNC33RquMtKgw2f1jGAyIQ0xGz",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "[CGW001.MULTICLOUDSERVICES.IT][ccs.admin]VCSP CCS LAB - Repo01",
-          "scope": "local",
-          "name": "backup repository - Ubuntu input",
-          "type": "datatype.string",
-          "description": "Cloud repository used for the workstation backup in Ubuntu. Check the format in ubuntu before to change the input",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FD8RKLEQJJ50Ph2Xx0P9tSjNeRjrmOVCF",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/installLicense.cmd",
-          "scope": "local",
-          "name": "activating script repo",
-          "type": "datatype.string",
-          "description": "Link to the activating script used for importing and activate both license and configuration in activation mode",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FFRQ1AZ4EAM4wEb7irEkBC8h9Kj2Xzt7G",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "https://andreaveeam.s3-eu-west-1.amazonaws.com/configuration.xml",
-          "scope": "local",
-          "name": "backup configuration file repo",
-          "type": "datatype.string",
-          "description": "Link to the backup configuration XML that will be applied to windows workstation for unmanaged backup",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FE1UPNUWH251VNCU2ai6D1FDqlXqt08SY",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "https://andreaveeam.s3-eu-west-1.amazonaws.com/Veeam-1000instances-backup-trial.lic",
-          "scope": "local",
-          "name": "veeam license repo",
-          "type": "datatype.string",
-          "description": "Link to the repository to download veeam license file",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FD8GNA9CVX91mSDGrgVKESLg0fmutY9yz",
+        "unique_name": "variable_workflow_01FL0LDAIACH833duH5odVEXNVnsA3Enciq",
         "object_type": "variable_workflow"
       },
       {
@@ -111,6 +59,32 @@
       {
         "schema_id": "datatype.string",
         "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "tenant admin full username [windows managed]",
+          "type": "datatype.string",
+          "description": "VAC username made of tenant/username need as input for the VAC APIs workflow.\nVariable filled during the workflow putting together inputs coming from Workload Manager (admin username/tenant)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FE80BA0XHLP6V2xykJF5dca0YM0WYSpYb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "configuration.xml",
+          "scope": "local",
+          "name": "configuration file [windows unmanaged]",
+          "type": "datatype.string",
+          "description": "Veeam backup configuration XML file name that will be applied to windows workstation for unmanaged backup",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL1A0FFCXAF3BBSty4kR64bckEeMrA6qO",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
           "value": "function Disable-ieESC\n\n{\n$AdminKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}”\n$UserKey = “HKLM:\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}”\nSet-ItemProperty -Path $AdminKey -Name “IsInstalled” -Value 0\nSet-ItemProperty -Path $UserKey -Name “IsInstalled” -Value 0\nStop-Process -Name Explorer\nWrite-Host “IE Enhanced Security Configuration (ESC) has been disabled.” -ForegroundColor Green\n}",
           "scope": "static",
           "name": "IES_script",
@@ -123,27 +97,66 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "https://andreaveeam.s3-eu-west-1.amazonaws.com/VAC.CommunicationAgent.x64.msi",
+          "value": "veeamsnap_4.0.0.1961_all.deb",
           "scope": "local",
-          "name": "management agent installer repo",
+          "name": "veeamsnap deb file [ubuntu]",
           "type": "datatype.string",
-          "description": "link to the management agent .msi installer for Windows repo",
+          "description": "Veeamsnap deb file name stored in the Veeam repository",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FE1HBP7JKKF5iq57KUzeZwIg2ODVfesxm",
+        "unique_name": "variable_workflow_01FL0KLLXPPBY6WZnNuzPUtV8iMQdbmtfqs",
         "object_type": "variable_workflow"
       },
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeam_4.0.0.1961_amd64.deb",
+          "value": "https://baas-ccs.s3-eu-west-1.amazonaws.com/Veeam/",
           "scope": "local",
-          "name": "veeam deb repo",
+          "name": "veeam shared repository ",
           "type": "datatype.string",
-          "description": "Link to the repository to download veeam deb files for Ubuntu",
+          "description": "Veeam Repository in which all files will be shared. To access files, buid the entire URL using:\n\n[veeam repository variable][file path]",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FD8DA7T65ZW7WIYuse4hxIvEo7W1eBbVu",
+        "unique_name": "variable_workflow_01FL0DYSO3UX12L9yvDXnxKi6hiI6WR7TwN",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "CGW001.MULTICLOUDSERVICES.IT",
+          "scope": "local",
+          "name": "cloud gateway [windows]",
+          "type": "datatype.string",
+          "description": "Veeam Cloud gateway used in windows ",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FE1RVV4WNC33RquMtKgw2f1jGAyIQ0xGz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "cgw001.multicloudservices.it",
+          "scope": "local",
+          "name": "cloud gateway [ubuntu]",
+          "type": "datatype.string",
+          "description": "DNS name or IP address of the Veeam Cloud gateway",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FD8M27ANPXR53yciYZmqVsbuTp3ngC3Tq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "VeeamAgentWindows_4.0.0.1811.exe",
+          "scope": "local",
+          "name": "backup agent installer [windows unmanaged]",
+          "type": "datatype.string",
+          "description": "Name of the backup agent installer file found in the repository",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01FL0GOBFM2SG1ApZSWHZkSkn56TA5qnIPe",
         "object_type": "variable_workflow"
       },
       {
@@ -151,9 +164,9 @@
         "properties": {
           "value": "",
           "scope": "local",
-          "name": "veaam_admin_password",
+          "name": "veeam admin password [windows managed]",
           "type": "datatype.secure_string",
-          "description": "Use secure string to store veeam admin password before give it as input",
+          "description": "Use secure string to store veeam admin password before give it as input for API workflow",
           "is_required": false
         },
         "unique_name": "variable_workflow_01FE3KV1WPU4C1tV86jxVaY6BsY3ictVsR0",
@@ -162,40 +175,27 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/VeeamAgentWindows_4.0.0.1811.exe",
+          "value": "[CGW001.MULTICLOUDSERVICES.IT][ccs.admin]VCSP CCS LAB - Repo01",
           "scope": "local",
-          "name": "backup agent installer repo",
+          "name": "cloud repository [ubuntu]",
           "type": "datatype.string",
-          "description": "Link to the backup agent installer for Windows",
+          "description": "Cloud repository used for the workstation backup in Ubuntu. Check the format in ubuntu before to change the input",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FE1J9D4JP8U3jsEuisehw9hPMHJQWfie0",
+        "unique_name": "variable_workflow_01FD8RKLEQJJ50Ph2Xx0P9tSjNeRjrmOVCF",
         "object_type": "variable_workflow"
       },
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "https://pvt2020.s3-eu-west-1.amazonaws.com/AO/veeamsnap_4.0.0.1961_all.deb",
+          "value": "VAC.CommunicationAgent.x64.msi",
           "scope": "local",
-          "name": "veeamsnap deb repo",
+          "name": "veeam management agent file [windows managed]",
           "type": "datatype.string",
-          "description": "Link to the repository to download veeamsnap deb files for Ubuntu",
+          "description": "Name of the management agent msi installer file stored in the Veeam repository",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FD8C89PDOZX1C7g8n1vpYwRYYwbsWWHZU",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "cgw001.multicloudservices.it",
-          "scope": "local",
-          "name": "cloud gateway - Ubuntu",
-          "type": "datatype.string",
-          "description": "DNS name or IP address of the Veeam Cloud gateway",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01FD8M27ANPXR53yciYZmqVsbuTp3ngC3Tq",
+        "unique_name": "variable_workflow_01FL1DTR88LSA2fPKNM7F0JWTPOmuX4pvrK",
         "object_type": "variable_workflow"
       }
     ],
@@ -499,6 +499,11 @@
                       "jsonpath_query": "$.parameters.appParams[?(@.name==\"backup_schedule_time\")].value",
                       "jsonpath_query_name": "backup schedule time",
                       "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.parameters.appParams[?(@.name==\"license_file\")].value",
+                      "jsonpath_query_name": "license_file",
+                      "jsonpath_query_type": "string"
                     }
                   ],
                   "skip_execution": false
@@ -552,7 +557,7 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8C89PDOZX1C7g8n1vpYwRYYwbsWWHZU$ -o veeamsnap_4.0.0.1961_all.deb ; curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8DA7T65ZW7WIYuse4hxIvEo7W1eBbVu$ -o veeam_4.0.0.1961_amd64.deb;",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0DYSO3UX12L9yvDXnxKi6hiI6WR7TwN$$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0KLLXPPBY6WZnNuzPUtV8iMQdbmtfqs$ -o veeamsnap_4.0.0.1961_all.deb ; curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0DYSO3UX12L9yvDXnxKi6hiI6WR7TwN$$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0LDAIACH833duH5odVEXNVnsA3Enciq$ -o veeam_4.0.0.1961_amd64.deb;",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -583,7 +588,7 @@
                     "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                     "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                     "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8GNA9CVX91mSDGrgVKESLg0fmutY9yz$ -o license.lic",
+                    "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $activity.definition_activity_01FD9GQE5X2SN3JcXG72nQnMPCPFHiDKBVA.output.jsonpath_queries.license_file$ -o license.lic",
                     "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                   },
                   "runtime_user": {
@@ -693,14 +698,14 @@
               },
               {
                 "unique_name": "definition_activity_01F5KEUJHGKQ73cB7gxPQBtvibCkZFgxj0Y",
-                "name": "Connect to Filippetti Veeam Cloud",
-                "title": "Connect to Filippetti Veeam Cloud",
+                "name": "Connect to SP Cloud",
+                "title": "Connect to SP Cloud",
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
                   "continue_on_failure": false,
                   "description": "Connect to the Veeam Gateway",
-                  "display_name": "Connect to Filippetti Veeam Cloud",
+                  "display_name": "Connect to SP Cloud",
                   "input": {
                     "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "$activity.definition_activity_01FIF0KNXTKC32fU7IfDhyb0tUmYPF0YvfS.output.action_type$",
                     "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "$activity.definition_activity_01FIF0KNXTKC32fU7IfDhyb0tUmYPF0YvfS.output.response_body$",
@@ -965,6 +970,29 @@
                     "object_type": "definition_activity",
                     "actions": [
                       {
+                        "unique_name": "definition_activity_01FL08MQSXFY06sxaKs9qQElGgTVhNL0xfN",
+                        "name": "JSONPath Query",
+                        "title": "Get workload Manager License URL Input",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "description": "Get the URL to the license repository",
+                          "display_name": "Get workload Manager License URL Input",
+                          "input_json": "$activity.definition_activity_01FIF0KNXTKC32fU7IfDhyb0tUmYPF0YvfS.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.parameters.appParams[?(@.name==\"license_file\")].value",
+                              "jsonpath_query_name": "license_file",
+                              "jsonpath_query_type": "string"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
                         "unique_name": "definition_activity_01FE19D04XWA33zmyy8MybVpf2mmLAXeo99",
                         "name": "Download Backup Agent",
                         "title": "Download Backup Agent",
@@ -980,7 +1008,7 @@
                             "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                             "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                             "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FE1J9D4JP8U3jsEuisehw9hPMHJQWfie0$ -Outfile BackupAgent.exe",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0DYSO3UX12L9yvDXnxKi6hiI6WR7TwN$$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0GOBFM2SG1ApZSWHZkSkn56TA5qnIPe$ -Outfile BackupAgent.exe",
                             "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                           },
                           "runtime_user": {
@@ -1042,7 +1070,7 @@
                             "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                             "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                             "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FD8GNA9CVX91mSDGrgVKESLg0fmutY9yz$ -Outfile license.lic",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $activity.definition_activity_01FL08MQSXFY06sxaKs9qQElGgTVhNL0xfN.output.jsonpath_queries.license_file$ -Outfile license.lic",
                             "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                           },
                           "runtime_user": {
@@ -1073,7 +1101,7 @@
                             "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                             "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                             "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FE1UPNUWH251VNCU2ai6D1FDqlXqt08SY$ -Outfile configuration.xml",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0DYSO3UX12L9yvDXnxKi6hiI6WR7TwN$$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL1A0FFCXAF3BBSty4kR64bckEeMrA6qO$ -Outfile configuration.xml",
                             "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                           },
                           "runtime_user": {
@@ -1104,7 +1132,7 @@
                             "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                             "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                             "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FFRQ1AZ4EAM4wEb7irEkBC8h9Kj2Xzt7G$ -Outfile license.cmd",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0DYSO3UX12L9yvDXnxKi6hiI6WR7TwN$$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL1C7J6DLR76l0FIMM0r27zxtnVghrREm$ -Outfile activation.cmd",
                             "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                           },
                           "runtime_user": {
@@ -1135,7 +1163,7 @@
                             "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                             "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                             "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": ".\\\\license.cmd",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": ".\\\\activation.cmd",
                             "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                           },
                           "runtime_user": {
@@ -1187,7 +1215,7 @@
                             "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
                             "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
                             "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
-                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FE1HBP7JKKF5iq57KUzeZwIg2ODVfesxm$ -Outfile VAC.msi",
+                            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "curl $workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL0DYSO3UX12L9yvDXnxKi6hiI6WR7TwN$$workflow.definition_workflow_01EBYV4LT06H73xRs5EBiYTewZkBZgDrkAS.local.variable_workflow_01FL1DTR88LSA2fPKNM7F0JWTPOmuX4pvrK$ -Outfile VAC.msi",
                             "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
                           },
                           "runtime_user": {
@@ -1351,6 +1379,58 @@
         "base_type": "workflow",
         "variables": [
           {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "DEMO Workstation Policy",
+              "scope": "input",
+              "name": "Backup Policy",
+              "type": "datatype.string",
+              "description": "Veeam Backup Policy to apply to the workstation. It must be present among the one listed in the VAC",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Cloud Provider",
+              "type": "datatype.string",
+              "description": "Cloud Environment in which the workstation is deplyed (insert Amazon if AWS, insert any other value for others)",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01FGRK4F7QTTF3EVDAvqF9fJmXZB1rfdTfj",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "null",
+              "scope": "local",
+              "name": "backup_agent_uid",
+              "type": "datatype.string",
+              "description": "Veeam Backup Agent Unique ID that Veeam associates to the Backup Agent installed in the workstation\nDefault value null used for the loop (once the value will be updated, loop will end)",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "null",
+              "scope": "local",
+              "name": "veeam_workstation_uid",
+              "type": "datatype.string",
+              "description": "Workstation unique ID given by Veeam once the workstation has been discovered\nDefault value null used for the loop (once the value will be updated, loop will end)",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
+            "object_type": "variable_workflow"
+          },
+          {
             "schema_id": "datatype.integer",
             "properties": {
               "value": 10,
@@ -1361,6 +1441,32 @@
               "is_required": false
             },
             "unique_name": "variable_workflow_01FGULDZQUH253YL4FCLRMica8cqsRTVMrJ",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "CCS_LAB\\ccs.admin",
+              "scope": "input",
+              "name": "Username",
+              "type": "datatype.string",
+              "description": "Veeam Admin username",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "local",
+              "name": "access_token",
+              "type": "datatype.string",
+              "description": "Access Token given by the VAC API once authenticated",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
             "object_type": "variable_workflow"
           },
           {
@@ -1381,51 +1487,12 @@
             "properties": {
               "value": "",
               "scope": "input",
-              "name": "Cloud Provider",
-              "type": "datatype.string",
-              "description": "Cloud Environment in which the workstation is deplyed (insert Amazon if AWS, insert any other value for others)",
-              "is_required": true
-            },
-            "unique_name": "variable_workflow_01FGRK4F7QTTF3EVDAvqF9fJmXZB1rfdTfj",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "input",
               "name": "Workstation hostname",
               "type": "datatype.string",
               "description": "Name of the workstation",
               "is_required": true
             },
             "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "null",
-              "scope": "local",
-              "name": "backup_agent_uid",
-              "type": "datatype.string",
-              "description": "Veeam Backup Agent Unique ID that Veeam associates to the Backup Agent installed in the workstation\nDefault value null used for the loop (once the value will be updated, loop will end)",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "CCS_LAB\\ccs.admin",
-              "scope": "input",
-              "name": "Username",
-              "type": "datatype.string",
-              "description": "Veeam Admin username",
-              "is_required": true
-            },
-            "unique_name": "variable_workflow_01FBGE0LAZ80B17EwFKqGlRtRLBNKQ3KFcF",
             "object_type": "variable_workflow"
           },
           {
@@ -1439,45 +1506,6 @@
               "is_required": true
             },
             "unique_name": "variable_workflow_01FGQMN2OU5XL0HXJ51sTLitZhvtdGRFTvo",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "DEMO Workstation Policy",
-              "scope": "input",
-              "name": "Backup Policy",
-              "type": "datatype.string",
-              "description": "Veeam Backup Policy to apply to the workstation. It must be present among the one listed in the VAC",
-              "is_required": true
-            },
-            "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "null",
-              "scope": "local",
-              "name": "veeam_workstation_uid",
-              "type": "datatype.string",
-              "description": "Workstation unique ID given by Veeam once the workstation has been discovered\nDefault value null used for the loop (once the value will be updated, loop will end)",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "local",
-              "name": "access_token",
-              "type": "datatype.string",
-              "description": "Access Token given by the VAC API once authenticated",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
             "object_type": "variable_workflow"
           }
         ],
