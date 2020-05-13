@@ -9,27 +9,14 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
+          "value": "null",
           "scope": "local",
-          "name": "access_token",
+          "name": "backup_agent_uid",
           "type": "datatype.string",
-          "description": "Access Token given by the VAC API once authenticated",
+          "description": "Veeam Backup Agent Unique ID that Veeam associates to the Backup Agent installed in the workstation\nDefault value null used for the loop (once the value will be updated, loop will end)",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "*****",
-          "scope": "input",
-          "name": "Password",
-          "type": "datatype.secure_string",
-          "description": "Veeam Admin password",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
+        "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
         "object_type": "variable_workflow"
       },
       {
@@ -48,19 +35,6 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "Workstation hostname",
-          "type": "datatype.string",
-          "description": "Name of the workstation",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
           "value": "null",
           "scope": "local",
           "name": "veeam_workstation_uid",
@@ -69,6 +43,19 @@
           "is_required": false
         },
         "unique_name": "variable_workflow_01FE9SB8BSU3M3LPS0XTGrCQIcM5lsMp1u8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Workstation hostname",
+          "type": "datatype.string",
+          "description": "Name of the workstation",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FC90D4QFUJJ4DMdybvmSfpV3vVppPFS9l",
         "object_type": "variable_workflow"
       },
       {
@@ -98,29 +85,29 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "datatype.string",
+        "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "DEMO Workstation Policy",
+          "value": "*****",
           "scope": "input",
-          "name": "Backup Policy",
-          "type": "datatype.string",
-          "description": "Veeam Backup Policy to apply to the workstation. It must be present among the one listed in the VAC",
+          "name": "Password",
+          "type": "datatype.secure_string",
+          "description": "Veeam Admin password",
           "is_required": true
         },
-        "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
+        "unique_name": "variable_workflow_01FBGELC22EEE5eZIsqJDP7zeY1u8URAeOj",
         "object_type": "variable_workflow"
       },
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "null",
+          "value": "",
           "scope": "local",
-          "name": "backup_agent_uid",
+          "name": "access_token",
           "type": "datatype.string",
-          "description": "Veeam Backup Agent Unique ID that Veeam associates to the Backup Agent installed in the workstation\nDefault value null used for the loop (once the value will be updated, loop will end)",
+          "description": "Access Token given by the VAC API once authenticated",
           "is_required": false
         },
-        "unique_name": "variable_workflow_01FCK4Q2SIA5L2XnY9gSk315hocP6eQNLnt",
+        "unique_name": "variable_workflow_01FBGA0NW0P2I2tECsbPcp3zukSGhOTYyoc",
         "object_type": "variable_workflow"
       },
       {
@@ -134,6 +121,19 @@
           "is_required": true
         },
         "unique_name": "variable_workflow_01FGQMN2OU5XL0HXJ51sTLitZhvtdGRFTvo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "DEMO Workstation Policy",
+          "scope": "input",
+          "name": "Backup Policy",
+          "type": "datatype.string",
+          "description": "Veeam Backup Policy to apply to the workstation. It must be present among the one listed in the VAC",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01FC8YKL5AC2838ClnJtivjwkt6RiIMW6oU",
         "object_type": "variable_workflow"
       }
     ],
