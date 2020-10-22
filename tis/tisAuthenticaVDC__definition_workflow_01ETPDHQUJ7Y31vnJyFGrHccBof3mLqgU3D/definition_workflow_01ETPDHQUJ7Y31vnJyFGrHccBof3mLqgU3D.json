@@ -56,8 +56,8 @@
           "method": "POST",
           "relative_url": "api/sessions",
           "runtime_user": {
-            "override_target_runtime_user": false,
-            "target_default": true
+            "override_target_runtime_user": true,
+            "runtime_user_id": "definition_runtime_user_01ETPDDME7POW7XHxX38j4Ulxf4N0i7tsbK"
           },
           "skip_execution": false,
           "target": {
